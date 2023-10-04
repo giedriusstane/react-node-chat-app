@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 import bcrypt from 'bcryptjs';
 
 const userRegistration = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
 
     const newErrorText = [];
 
@@ -30,6 +30,8 @@ const userRegistration = async (req, res) => {
         newErrorText.push("Password must match.");
     }
 
+ 
+
 
     try {
         const usernameToCheck = req.body.username;
@@ -38,33 +40,26 @@ const userRegistration = async (req, res) => {
         if (existingUser) {
             newErrorText.push("User already exists.");
         }
-    } catch (err) {
-        console.error("Error checking if user exists:", err);
-        res.status(500).json({ error: "Error checking if user exists." });
-    }
 
+        if (newErrorText.length === 0) {
 
-
-
-    if (newErrorText.length === 0) {
-        try {
             const hashedPassword = await bcrypt.hash(req.body.password_1, 10);
             const newUser = new User({
                 username: req.body.username,
                 password: hashedPassword,
-
             });
 
             await newUser.save();
             console.log("User saved to MongoDB");
             res.status(201).json({ registration: "ok" });
-        } catch (err) {
-            console.error("Error saving user:", err);
-            res.status(500).json({ error: "Failed to save user." });
+        } else {
+            res.status(400).json({ errors: newErrorText });
         }
-    } else {
-        res.status(400).json({ errors: newErrorText });
+    } catch (err) {
+        console.error("Error checking if user exists", err);
+        res.status(500).json({ error: "Error checking if user exists." });
     }
+
 };
 
 export default userRegistration;

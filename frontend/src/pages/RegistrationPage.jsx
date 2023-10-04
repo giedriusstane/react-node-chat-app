@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ErrorMsgCard from "../components/ErrorMsgCard";
 import "./RegistrationPage.scss";
 
@@ -9,17 +10,33 @@ const RegistrationPage = () => {
   const inputPassword_1Ref = useRef();
   const inputPassword_2Ref = useRef();
 
-  const registerNewUser = async (newUserData) => {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUserData),
-    };
-    const response = await fetch(`http://localhost:3000/registration`, options);
-    const jsonData = await response.json();
-    console.log(jsonData);
+  const navigate = useNavigate();
+
+  const registerNewUser = async (userData) => {
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      };
+      const response = await fetch(
+        `http://localhost:3000/registration`,
+        options
+      );
+      const data = await response.json();
+
+      if (data.registration === "ok") {
+        navigate("/login");
+      } else {
+        console.log(data.errors);
+        setErrorText(data.errors);
+        setShowErrorCard(true);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   const handleRegisterBtn = () => {
