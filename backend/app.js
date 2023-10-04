@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import cors from "cors";
+import connectDB from "./config/db.js";
+import registrationRouters from "./routers/registrationRouters.js";
 
 
 const port = process.env.PORT;
@@ -10,17 +12,12 @@ app.use(cors());
 app.use(express.json());
 
 
+connectDB();
 
 
+app.use("/", registrationRouters);
 
-app.get("/", (req, res) => {
-    res.send("veikia");
-});
 
-app.post("/registration", (req, res) => {
-    console.log(req.body);
-    res.json({ registration: "ok" });
-})
 
 
 

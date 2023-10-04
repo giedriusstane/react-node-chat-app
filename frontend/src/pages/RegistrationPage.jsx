@@ -61,6 +61,12 @@ const RegistrationPage = () => {
       setErrorText(newErrorText);
     }
 
+    if (newUserData.password_1 !== newUserData.password_2) {
+      newErrorText.push("Password must match.");
+      setShowErrorCard(true);
+      setErrorText(newErrorText);
+    }
+
     if (newErrorText.length === 0) {
       setShowErrorCard(false);
       registerNewUser(newUserData);
@@ -78,7 +84,9 @@ const RegistrationPage = () => {
       {showErrorCard && (
         <ErrorMsgCard
           onBtnXClick={onBtnXClick}
-          msgText={errorText.map((error) => error)}
+          msgText={errorText.map((error, index) => (
+            <div key={index}>{error}</div>
+          ))}
         />
       )}
 
