@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorMsgCard from "../components/ErrorMsgCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./LoginPage.scss";
@@ -6,13 +7,13 @@ import "./LoginPage.scss";
 const LoginPage = () => {
   return (
     <div className="login-page">
-      <h4 className="login-page__error-msg"></h4>
+      <ErrorMsgCard msgText={"Incorrect username or password. "} />
 
       <div className="login-page__inputs-container">
         <input type="text" placeholder="username" />
         <input type="password" placeholder="password" />
 
-        <button>Login</button>
+        <button className="login-page__btn-login">Login</button>
 
         <div className="login-page__autologin-container">
           <div className="login-page__checkbox">
