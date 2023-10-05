@@ -68,4 +68,4 @@ const userRegistration = async (req, res) => {
 
 };
 
-export default userRegistration;
+export default { userRegistration };

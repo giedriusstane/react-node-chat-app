@@ -35,4 +35,4 @@ const userLogin = async (req, res) => {
 };
 
 
-export default userLogin;
+export default {userLogin};

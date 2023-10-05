@@ -4,6 +4,6 @@ import registrationController from "../controllers/registrationController.js";
 
 
 
-router.post("/registration", registrationController);
+router.post("/registration", registrationController.userRegistration);
 
 export default router;

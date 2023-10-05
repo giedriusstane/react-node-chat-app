@@ -1,14 +1,17 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ErrorMsgCard from "../components/ErrorMsgCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./LoginPage.scss";
 
 const LoginPage = () => {
-  const [errorText, setErrorText] = useState([]);
+  const [errorText, setErrorText] = useState();
   const [showErrorCard, setShowErrorCard] = useState(false);
   const inputUsernameRef = useRef();
   const inputPasswordRef = useRef();
+
+  const navigate = useNavigate();
 
   const loginUser = async (userData) => {
     try {
@@ -24,14 +27,10 @@ const LoginPage = () => {
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
+        navigate("/profile");
       } else {
-        const errorArray = Array.isArray(data.error)
-          ? data.error
-          : [data.error];
-
-        console.log(errorArray);
         setShowErrorCard(true);
-        setErrorText(errorArray);
+        setErrorText(data.error);
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -54,12 +53,7 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       {showErrorCard && (
-        <ErrorMsgCard
-          onBtnXClick={onBtnXClick}
-          msgText={errorText.map((error, index) => (
-            <div key={index}>{error}</div>
-          ))}
-        />
+        <ErrorMsgCard onBtnXClick={onBtnXClick} msgText={errorText} />
       )}
 
       <div className="login-page__inputs-container">

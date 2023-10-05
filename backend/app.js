@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import registrationRouters from "./routers/registrationRouters.js";
 import loginRouters from "./routers/loginRouters.js";
+import profileRouters from "./routers/profileRouters.js";
 
 
 
@@ -20,6 +21,7 @@ connectDB();
 
 app.use("/", registrationRouters);
 app.use("/", loginRouters);
+app.use("/", profileRouters);
 
 
 
