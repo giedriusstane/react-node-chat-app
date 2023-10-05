@@ -30,8 +30,8 @@ const RegistrationPage = () => {
       if (data.registration === "ok") {
         navigate("/login");
       } else {
-        console.log(data.errors);
-        setErrorText(data.errors);
+        console.log(data.error);
+        setErrorText(data.error);
         setShowErrorCard(true);
       }
     } catch (error) {

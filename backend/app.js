@@ -4,6 +4,9 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import registrationRouters from "./routers/registrationRouters.js";
+import loginRouters from "./routers/loginRouters.js";
+
+
 
 
 const port = process.env.PORT;
@@ -16,6 +19,7 @@ connectDB();
 
 
 app.use("/", registrationRouters);
+app.use("/", loginRouters);
 
 
 

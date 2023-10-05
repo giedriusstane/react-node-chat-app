@@ -30,34 +30,40 @@ const userRegistration = async (req, res) => {
         newErrorText.push("Password must match.");
     }
 
- 
 
 
-    try {
-        const usernameToCheck = req.body.username;
-        const existingUser = await User.findOne({ username: usernameToCheck });
 
-        if (existingUser) {
-            newErrorText.push("User already exists.");
+    if (newErrorText.length === 0) {
+
+        try {
+            const usernameToCheck = req.body.username;
+            const existingUser = await User.findOne({ username: usernameToCheck });
+
+            if (existingUser) {
+                newErrorText.push("User already exists.");
+            }
+
+            if (newErrorText.length === 0) {
+
+                const hashedPassword = await bcrypt.hash(req.body.password_1, 10);
+                const newUser = new User({
+                    username: req.body.username,
+                    password: hashedPassword,
+                });
+
+                await newUser.save();
+                console.log("User saved to MongoDB");
+                res.status(201).json({ registration: "ok" });
+            } else {
+                res.status(400).json({ error: newErrorText });
+            }
+        } catch (err) {
+            console.error("Error checking if user exists or saving user:", err);
+            res.status(500).json({ error: "Error checking if user exists or saving user." });
         }
+    } else {
 
-        if (newErrorText.length === 0) {
-
-            const hashedPassword = await bcrypt.hash(req.body.password_1, 10);
-            const newUser = new User({
-                username: req.body.username,
-                password: hashedPassword,
-            });
-
-            await newUser.save();
-            console.log("User saved to MongoDB");
-            res.status(201).json({ registration: "ok" });
-        } else {
-            res.status(400).json({ errors: newErrorText });
-        }
-    } catch (err) {
-        console.error("Error checking if user exists", err);
-        res.status(500).json({ error: "Error checking if user exists." });
+        res.status(400).json({ error: newErrorText });
     }
 
 };
