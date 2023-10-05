@@ -1,10 +1,8 @@
-import React from 'react'
-import "./Toolbar.scss"
+import React from "react";
+import "./Toolbar.scss";
 
 const Toolbar = () => {
-  return (
-    <div>Toolbar</div>
-  )
-}
+  return <div className="toolbar">Toolbar</div>;
+};
 
-export default Toolbar
+export default Toolbar;

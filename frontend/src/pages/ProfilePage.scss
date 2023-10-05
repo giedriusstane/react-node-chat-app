@@ -1,0 +1,46 @@
+.profile-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10rem;
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__user-picture {
+    border: 0.1rem solid rgb(206, 206, 206);
+    width: 15rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(100rem);
+  }
+
+  &__btn-change-picture {
+    margin-top: 2rem;
+    background-color: rgb(75, 180, 120);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
+
+  &__btn-change-password{
+    margin-top: 2rem;
+    background-color: rgb(180, 101, 75);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
+}

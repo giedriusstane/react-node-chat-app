@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
             return res.status(403).json({ error: 'Forbidden' });
         }
 
-        req.userId = payload;
+        req.userId = payload.userId;
         next();
     })
 

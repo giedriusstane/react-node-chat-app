@@ -1,0 +1,48 @@
+.change-pic-pass-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: 0.1rem solid rgba(212, 212, 212, 0.4);
+  padding: 5rem;
+  position: absolute;
+  z-index: 2;
+  background-color: rgb(244, 245, 245);
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  border-radius: 0.5rem;
+  width: 50rem;
+  height: 40rem;
+  background-color: rgba(199, 222, 215, 0.2);
+  justify-content: center;
+  backdrop-filter: blur(1.5rem);
+  box-shadow: 0.4rem 0.1rem 0.7rem 0.2rem rgba(150, 150, 150, 0.1);
+
+  &__input {
+    border: 0.1rem solid rgb(230, 230, 230);
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    height: 4rem;
+    text-align: center;
+    letter-spacing: 0.4rem;
+  }
+
+  &__btn-change {
+    background-color: rgb(75, 180, 120);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
+
+  &__x-close {
+    font-size: 2.7rem;
+    cursor: pointer;
+    color: rgb(69, 74, 72);
+    position: absolute;
+    top: 2rem;
+    left: 45rem;
+  }
+}
