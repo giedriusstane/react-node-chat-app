@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ChangePicPassModal from "../components/ChangePicPassModal";
 import { login } from "../../features/authSlice";
 import { useDispatch } from "react-redux";
-
+import LoadingElement from "../components/LoadingElement";
 import "./ProfilePage.scss";
 
 const ProfilePage = () => {
@@ -10,6 +10,8 @@ const ProfilePage = () => {
   const [responseData, setResponseData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPasswordOpen, setIsModaPasswordOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const userProfile = async () => {
     try {
@@ -25,6 +27,7 @@ const ProfilePage = () => {
 
       if (response.ok) {
         setResponseData(data);
+        dispatch(login());
       } else {
         setErrorText(data.error);
       }
@@ -56,7 +59,12 @@ const ProfilePage = () => {
         <div>{errorText}</div>
       ) : (
         <div className="profile-page__container">
-          <div className="profile-page__title">{`${responseData.message} ${responseData.userData}`}</div>
+          {responseData.message && responseData.userData ? (
+            <div className="profile-page__title">{`${responseData.message} ${responseData.userData}`}</div>
+          ) : (
+            <LoadingElement/>
+          )}
+
           <img
             className="profile-page__user-picture"
             src="https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"

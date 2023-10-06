@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
@@ -10,6 +10,7 @@ import { login } from "../features/authSlice";
 const App = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -17,18 +18,18 @@ const App = () => {
     }
   }, [dispatch]);
 
+  const pathsWithoutToolbar = ["/", "/login"];
+  const shouldRenderToolbar = !pathsWithoutToolbar.includes(location.pathname);
+
   return (
-    <div>
-      {isLoggedIn && <Toolbar />}
+    <>
+      {shouldRenderToolbar && isLoggedIn && <Toolbar />}
       <Routes>
         <Route path={"/"} element={<RegistrationPage />} />
+        <Route path={"/login"} element={<LoginPage />} />
         <Route path={"/profile"} element={<ProfilePage />} />
-        <Route
-          path={"/login"}
-          element={isLoggedIn ? <Navigate to="/profile" /> : <LoginPage />}
-        />
       </Routes>
-    </div>
+    </>
   );
 };
 
