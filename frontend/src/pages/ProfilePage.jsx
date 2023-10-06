@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import ChangePicPassModal from "../components/ChangePicPassModal";
+import { login } from "../../features/authSlice";
+import { useDispatch } from "react-redux";
+
 import "./ProfilePage.scss";
 
 const ProfilePage = () => {

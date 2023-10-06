@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorMsgCard from "../components/ErrorMsgCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
 import "./LoginPage.scss";
 
 const LoginPage = () => {
