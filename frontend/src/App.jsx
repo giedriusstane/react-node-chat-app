@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ProfilePage from "./pages/ProfilePage";
 import Toolbar from "./components/Toolbar";
 import { login } from "../features/authSlice";
+import MessagesPage from "./pages/MessagesPage";
 
 const App = () => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -23,11 +23,39 @@ const App = () => {
 
   return (
     <>
-      {shouldRenderToolbar && isLoggedIn && <Toolbar />}
+      {shouldRenderToolbar && localStorage.getItem("token") && <Toolbar />}
       <Routes>
         <Route path={"/"} element={<RegistrationPage />} />
-        <Route path={"/login"} element={<LoginPage />} />
-        <Route path={"/profile"} element={<ProfilePage />} />
+        <Route
+          path={"/login"}
+          element={
+            localStorage.getItem("token") ? (
+              <Navigate to="/profile" />
+            ) : (
+              <LoginPage />
+            )
+          }
+        />
+        <Route
+          path={"/profile"}
+          element={
+            localStorage.getItem("token") ? (
+              <ProfilePage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path={"/messages"}
+          element={
+            localStorage.getItem("token") ? (
+              <MessagesPage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
       </Routes>
     </>
   );

@@ -1,4 +1,13 @@
 .toolbar {
-  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 2rem;
+   height: 10rem;
   background-color: rgb(244, 250, 255);
+
+  &__btn-logout {
+    background-color: rgb(215, 89, 89);
+    cursor: pointer;
+  }
 }

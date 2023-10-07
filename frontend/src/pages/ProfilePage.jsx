@@ -62,7 +62,7 @@ const ProfilePage = () => {
           {responseData.message && responseData.userData ? (
             <div className="profile-page__title">{`${responseData.message} ${responseData.userData}`}</div>
           ) : (
-            <LoadingElement/>
+            <LoadingElement />
           )}
 
           <img
