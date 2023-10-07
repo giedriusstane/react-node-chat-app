@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ErrorMsgCard from "../components/ErrorMsgCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-
+import { autologin } from "../../features/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import "./LoginPage.scss";
 
 const LoginPage = () => {
@@ -12,7 +13,9 @@ const LoginPage = () => {
   const inputUsernameRef = useRef();
   const inputPasswordRef = useRef();
 
+  const autologinIs = useSelector((state) => state.auth.isAutologin);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginUser = async (userData) => {
     try {
@@ -51,6 +54,14 @@ const LoginPage = () => {
     setShowErrorCard(false);
   };
 
+  const handleCheckBoxAutologin = () => {
+    dispatch(autologin(!autologinIs));
+  };
+
+  useEffect(() => {
+    console.log("autologinIs:", autologinIs);
+  }, [autologinIs]);
+
   return (
     <div className="login-page">
       {showErrorCard && (
@@ -66,8 +77,11 @@ const LoginPage = () => {
         </button>
 
         <div className="login-page__autologin-container">
-          <div className="login-page__checkbox">
-            <FontAwesomeIcon icon={faCheck} />
+          <div
+            onClick={handleCheckBoxAutologin}
+            className="login-page__checkbox"
+          >
+            {autologinIs && <FontAwesomeIcon icon={faCheck} />}
           </div>
 
           <h4 className="login-page__autoligin-text">Stay signed in</h4>

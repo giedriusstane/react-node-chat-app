@@ -1,22 +1,30 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ProfilePage from "./pages/ProfilePage";
 import Toolbar from "./components/Toolbar";
-import { login } from "../features/authSlice";
 import MessagesPage from "./pages/MessagesPage";
 
 const App = () => {
-  const dispatch = useDispatch();
+  const autologinIs = useSelector((state) => state.auth.isAutologin);
   const location = useLocation();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      dispatch(login());
-    }
-  }, [dispatch]);
+    const removeTokenOnUnload = () => {
+      if (!autologinIs) {
+        localStorage.removeItem("token");
+      } else {
+        return;
+      }
+    };
+    window.addEventListener("beforeunload", removeTokenOnUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", removeTokenOnUnload);
+    };
+  }, [autologinIs]);
 
   const pathsWithoutToolbar = ["/", "/login"];
   const shouldRenderToolbar = !pathsWithoutToolbar.includes(location.pathname);
