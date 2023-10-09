@@ -7,6 +7,7 @@ import registrationRouters from "./routers/registrationRouters.js";
 import loginRouters from "./routers/loginRouters.js";
 import profileRouters from "./routers/profileRouters.js";
 import allUsersRouters from "./routers/allUsersRouters.js";
+import messagesRouters from "./routers/messagesRouters.js";
 
 
 
@@ -24,6 +25,7 @@ app.use("/", registrationRouters);
 app.use("/", loginRouters);
 app.use("/", profileRouters);
 app.use("/", allUsersRouters);
+app.use("/", messagesRouters)
 
 
 

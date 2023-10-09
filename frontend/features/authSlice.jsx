@@ -5,6 +5,8 @@ const authSlice = createSlice({
   initialState: {
     isLoggedIn: false,
     isAutologin: true,
+    currentUserId: "",
+    selectedUserId: "",
   },
 
   reducers: {
@@ -18,8 +20,22 @@ const authSlice = createSlice({
     autologin: (state, action) => {
       state.isAutologin = action.payload;
     },
+
+    updateCurrentUserId: (state, action) => {
+      state.currentUserId = action.payload;
+    },
+
+    updateSelectedUserId: (state, action) => {
+      state.selectedUserId = action.payload;
+    },
   },
 });
 
-export const { login, logout, autologin } = authSlice.actions;
+export const {
+  login,
+  logout,
+  autologin,
+  updateCurrentUserId,
+  updateSelectedUserId,
+} = authSlice.actions;
 export default authSlice.reducer;

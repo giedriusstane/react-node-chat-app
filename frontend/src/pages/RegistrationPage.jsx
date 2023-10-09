@@ -90,7 +90,7 @@ const RegistrationPage = () => {
     }
   };
 
-  const onBtnXClick = () => {
+  const onBtnXClickError = () => {
     setShowErrorCard(false);
   };
 
@@ -100,7 +100,7 @@ const RegistrationPage = () => {
 
       {showErrorCard && (
         <ErrorMsgCard
-          onBtnXClick={onBtnXClick}
+          onBtnXClickError={onBtnXClickError}
           msgText={errorText.map((error, index) => (
             <div key={index}>{error}</div>
           ))}

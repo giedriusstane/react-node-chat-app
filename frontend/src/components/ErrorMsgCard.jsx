@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./ErrorMsgCard.scss";
 
-const ErrorMsgCard = ({ msgText, onBtnXClick }) => {
-  const handleBtnXClick = () => {
-    if (onBtnXClick) {
-      onBtnXClick();
+const ErrorMsgCard = ({ msgText, onBtnXClickError }) => {
+  const handleBtnXClickError = () => {
+    if (onBtnXClickError) {
+      onBtnXClickError();
     }
   };
 
@@ -13,7 +13,7 @@ const ErrorMsgCard = ({ msgText, onBtnXClick }) => {
     <div className="error-msg-card">
       <h4 className="error-msg-card__error-text">{msgText}</h4>
       <FontAwesomeIcon
-        onClick={handleBtnXClick}
+        onClick={handleBtnXClickError}
         className="error-msg-card__x-close"
         icon={faTimes}
       />

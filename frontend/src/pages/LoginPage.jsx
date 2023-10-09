@@ -50,7 +50,7 @@ const LoginPage = () => {
     loginUser(userData);
   };
 
-  const onBtnXClick = () => {
+  const onBtnXClickError = () => {
     setShowErrorCard(false);
   };
 
@@ -65,7 +65,7 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       {showErrorCard && (
-        <ErrorMsgCard onBtnXClick={onBtnXClick} msgText={errorText} />
+        <ErrorMsgCard onBtnXClickError={onBtnXClickError} msgText={errorText} />
       )}
 
       <div className="login-page__inputs-container">

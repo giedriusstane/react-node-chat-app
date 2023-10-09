@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 import bcrypt from 'bcryptjs';
 
 const userRegistration = async (req, res) => {
-    // console.log(req.body);
+    console.log(req.body.username);
 
     const newErrorText = [];
 
