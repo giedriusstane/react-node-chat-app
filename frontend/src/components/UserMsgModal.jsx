@@ -42,7 +42,7 @@ const UserMsgModal = ({ onBtnXClick }) => {
         body: JSON.stringify(messageData),
       };
 
-      const response = await fetch(`http://localhost:3000/users`, options);
+      const response = await fetch(`http://localhost:3000/messages`, options);
       const jsonData = await response.json();
       if (response.ok) {
         console.log(jsonData);

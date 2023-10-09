@@ -5,6 +5,6 @@ import authMiddleware from "../middlewares/authMiddleware.js";
 
 
 
-router.post("/users", authMiddleware.verifyToken, messagesController.sendMessage);
+router.post("/messages", authMiddleware.verifyToken, messagesController.sendMessage);
 
 export default router;

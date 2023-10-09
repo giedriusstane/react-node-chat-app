@@ -1,0 +1,10 @@
+.messages-page {
+  display: flex;
+
+  &__conversations-container {
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid black;
+    padding: 2rem;
+  }
+}
