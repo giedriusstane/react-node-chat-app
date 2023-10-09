@@ -6,6 +6,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 import ProfilePage from "./pages/ProfilePage";
 import Toolbar from "./components/Toolbar";
 import MessagesPage from "./pages/MessagesPage";
+import UsersPage from "./pages/UsersPage";
 
 const App = () => {
   const autologinIs = useSelector((state) => state.auth.isAutologin);
@@ -59,6 +60,17 @@ const App = () => {
           element={
             localStorage.getItem("token") ? (
               <MessagesPage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path={"/users"}
+          element={
+            localStorage.getItem("token") ? (
+              <UsersPage />
             ) : (
               <Navigate to="/login" />
             )

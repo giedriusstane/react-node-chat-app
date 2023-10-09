@@ -19,7 +19,6 @@
     width: 15rem;
     object-fit: cover;
     border-radius: 0.5rem;
-    backdrop-filter: blur(100rem);
   }
 
   &__btn-change-picture {
@@ -33,7 +32,7 @@
     font-size: 1.4rem;
   }
 
-  &__btn-change-password{
+  &__btn-change-password {
     margin-top: 2rem;
     background-color: rgb(180, 101, 75);
     border: none;

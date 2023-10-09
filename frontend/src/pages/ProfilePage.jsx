@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import ChangePicPassModal from "../components/ChangePicPassModal";
-import { login } from "../../features/authSlice";
-import { useDispatch } from "react-redux";
 import LoadingElement from "../components/LoadingElement";
 import "./ProfilePage.scss";
 
@@ -11,12 +9,10 @@ const ProfilePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPasswordOpen, setIsModaPasswordOpen] = useState(false);
 
-  const dispatch = useDispatch();
-
   const userProfile = async () => {
     try {
       const options = {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -27,7 +23,6 @@ const ProfilePage = () => {
 
       if (response.ok) {
         setResponseData(data);
-        dispatch(login());
       } else {
         setErrorText(data.error);
       }
@@ -60,7 +55,7 @@ const ProfilePage = () => {
       ) : (
         <div className="profile-page__container">
           {responseData.message && responseData.userData ? (
-            <div className="profile-page__title">{`${responseData.message} ${responseData.userData}`}</div>
+            <div className="profile-page__title">{`${responseData.message} ${responseData.userData.username}`}</div>
           ) : (
             <LoadingElement />
           )}
