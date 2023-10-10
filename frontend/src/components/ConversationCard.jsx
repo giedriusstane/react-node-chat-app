@@ -2,8 +2,12 @@ import React from "react";
 import "./ConversationCard.scss";
 
 const ConversationCard = ({ userImg, username }) => {
+
+  const handleConversationCardClick = ()=>{
+    
+  }
   return (
-    <div className="conversation-card">
+    <div onClick={handleConversationCardClick} className="conversation-card">
       <div>
         <img
           className="conversation-card__user-img"

@@ -1,10 +1,32 @@
 .messages-page {
   display: flex;
+  gap: 5rem;
 
   &__conversations-container {
     display: flex;
     flex-direction: column;
     border: 0.1rem solid black;
     padding: 2rem;
+    gap: 2rem;
+  }
+
+  &__chat-container {
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid black;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  &__chat-field {
+    border: 0.1rem solid black;
+    padding: 2rem;
+    gap: 2rem;
+    height: 90%;
+  }
+
+  &__inputs-container {
+    display: flex;
+    gap: 2rem;
   }
 }
