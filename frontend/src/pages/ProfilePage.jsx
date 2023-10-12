@@ -9,6 +9,10 @@ const ProfilePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalPasswordOpen, setIsModaPasswordOpen] = useState(false);
 
+  const [pictureUrl, setPictureUrl] = useState(
+    "https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
+  );
+
   const userProfile = async () => {
     try {
       const options = {
@@ -48,6 +52,19 @@ const ProfilePage = () => {
     setIsModaPasswordOpen(false);
   };
 
+  const handleBtnUpdatePic = () => {
+    userProfile();
+    setIsModalOpen(false);
+
+    setIsModaPasswordOpen(false);
+  };
+
+  useEffect(() => {
+    if (responseData.userData && responseData.userData.pictureUrl) {
+      setPictureUrl(responseData.userData.pictureUrl);
+    }
+  }, [responseData]);
+
   return (
     <div className="profile-page">
       {errorText ? (
@@ -62,9 +79,10 @@ const ProfilePage = () => {
 
           <img
             className="profile-page__user-picture"
-            src="https://static.vecteezy.com/system/resources/previews/008/422/689/original/social-media-avatar-profile-icon-isolated-on-square-background-vector.jpg"
+            src={pictureUrl}
             alt="profile picture"
           />
+
           <button
             onClick={handleBtnChangePicture}
             className="profile-page__btn-change-picture"
@@ -82,6 +100,7 @@ const ProfilePage = () => {
             <ChangePicPassModal
               onBtnXClick={handleBtnXClick}
               placeholder={"picture url"}
+              onBtnUpdatePic={handleBtnUpdatePic}
             />
           )}
 
@@ -89,6 +108,8 @@ const ProfilePage = () => {
             <ChangePicPassModal
               onBtnXClick={handleBtnXClick}
               inputType={"password"}
+              placeholder={"password"}
+              onBtnUpdatePic={handleBtnUpdatePic}
             />
           )}
         </div>
