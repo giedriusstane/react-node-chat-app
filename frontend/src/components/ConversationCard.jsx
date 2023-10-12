@@ -1,11 +1,12 @@
 import React from "react";
 import "./ConversationCard.scss";
 
-const ConversationCard = ({ userImg, username }) => {
-
-  const handleConversationCardClick = ()=>{
-    
-  }
+const ConversationCard = ({ userImg, username, onConversationCardClick }) => {
+  const handleConversationCardClick = () => {
+    if (onConversationCardClick) {
+      onConversationCardClick();
+    }
+  };
   return (
     <div onClick={handleConversationCardClick} className="conversation-card">
       <div>

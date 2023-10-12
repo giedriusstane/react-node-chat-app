@@ -29,4 +29,31 @@
     display: flex;
     gap: 2rem;
   }
+
+  &__conversation-username {
+    color: gray;
+    font-size: 1.8rem;
+  }
+
+  &__msg-text {
+    background-color: rgb(198, 206, 238);
+    color: rgb(39, 39, 39);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+  }
+
+  &__msg-text-side {
+    background-color: rgb(24, 188, 81);
+    color: rgb(65, 65, 65);
+    font-weight: 500;
+    padding-left: 1rem;
+  }
+
+  &__sender-name {
+    background-color: rgb(198, 206, 238);
+    color: rgb(65, 65, 65);
+    font-weight: 500;
+    padding-left: 1rem;
+  }
 }
