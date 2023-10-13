@@ -174,23 +174,28 @@ const MessagesPage = () => {
       </div>
       <div className="messages-page__chat-container">
         <div className="messages-page__chat-field">
-          {chatText.split("\n").map((line, index) => (
-            <h3
-              key={index}
-              className={
-                index % 2 === 0
-                  ? "messages-page__sender-name"
-                  : "messages-page__msg-text"
-              }
-            >
-              {line}
-            </h3>
-          ))}
+          {chatText &&
+            chatText.split("\n").map((line, index) => (
+              <h3
+                key={index}
+                className={
+                  index % 2 === 0
+                    ? "messages-page__sender-name"
+                    : "messages-page__msg-text"
+                }
+              >
+                {line}
+              </h3>
+            ))}
         </div>
 
         <div className="messages-page__inputs-container">
-          <input type="text" placeholder="write message here..." />
-          <button>Send</button>
+          <input
+            className="messages-page__text-input"
+            type="text"
+            placeholder="write message here..."
+          />
+          <button className="messages-page__btn-send">Send</button>
         </div>
       </div>
     </div>

@@ -52,11 +52,10 @@ const ProfilePage = () => {
     setIsModaPasswordOpen(false);
   };
 
-  const handleBtnUpdatePic = () => {
-    userProfile();
-    setIsModalOpen(false);
-
+  const handleBtnUpdate = () => {
     setIsModaPasswordOpen(false);
+    setIsModalOpen(false);
+    userProfile();
   };
 
   useEffect(() => {
@@ -100,7 +99,7 @@ const ProfilePage = () => {
             <ChangePicPassModal
               onBtnXClick={handleBtnXClick}
               placeholder={"picture url"}
-              onBtnUpdatePic={handleBtnUpdatePic}
+              onBtnUpdate={handleBtnUpdate}
             />
           )}
 
@@ -109,7 +108,7 @@ const ProfilePage = () => {
               onBtnXClick={handleBtnXClick}
               inputType={"password"}
               placeholder={"password"}
-              onBtnUpdatePic={handleBtnUpdatePic}
+              onBtnUpdate={handleBtnUpdate}
             />
           )}
         </div>
