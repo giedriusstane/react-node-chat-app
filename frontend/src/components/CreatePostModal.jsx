@@ -6,7 +6,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentUserId } from "../../features/authSlice";
 
-const CreatePostModal = ({ onBtnXClick }) => {
+const CreatePostModal = ({ onBtnXClick, onBtnCreatePost }) => {
   const [errorText, setErrorText] = useState([]);
   const [showErrorCard, setShowErrorCard] = useState(false);
   const [userData, setUserData] = useState();
@@ -72,37 +72,39 @@ const CreatePostModal = ({ onBtnXClick }) => {
   };
 
   const handleCreatePostBtn = () => {
-    if (userData) {
-      const postData = {
-        postTitle: inputTitleRef.current.value,
-        postImage: inputPostImgRef.current.value,
-        sendersId: currentUserId,
-      };
+    if (onBtnCreatePost) {
+      if (userData) {
+        const postData = {
+          postTitle: inputTitleRef.current.value,
+          postImage: inputPostImgRef.current.value,
+          sendersId: currentUserId,
+        };
 
-      const newErrorText = [];
+        const newErrorText = [];
 
-      if (postData.postTitle.length < 3) {
-        newErrorText.push("Post title is too short.");
-        setShowErrorCard(true);
-        setErrorText(newErrorText);
-      }
+        if (postData.postTitle.length < 3) {
+          newErrorText.push("Post title is too short.");
+          setShowErrorCard(true);
+          setErrorText(newErrorText);
+        }
 
-      if (postData.postTitle.length > 50) {
-        newErrorText.push("Post title is too long.");
-        setShowErrorCard(true);
-        setErrorText(newErrorText);
-      }
+        if (postData.postTitle.length > 30) {
+          newErrorText.push("Post title is too long.");
+          setShowErrorCard(true);
+          setErrorText(newErrorText);
+        }
 
-      if (!postData.postImage.startsWith("http")) {
-        newErrorText.push("Bad img url.");
-        setShowErrorCard(true);
-        setErrorText(newErrorText);
-      }
+        if (!postData.postImage.startsWith("http")) {
+          newErrorText.push("Bad img url.");
+          setShowErrorCard(true);
+          setErrorText(newErrorText);
+        }
 
-      if (newErrorText.length === 0) {
-        setShowErrorCard(false);
-
-        createPost(postData);
+        if (newErrorText.length === 0) {
+          setShowErrorCard(false);
+          createPost(postData);
+          onBtnCreatePost();
+        }
       }
     }
   };

@@ -1,0 +1,7 @@
+.posts-page {
+  &__posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+}

@@ -116,12 +116,6 @@ const ChangePicPassModal = ({
   return (
     <div className="modal-overlay">
       <div className="change-pic-pass-modal">
-        <FontAwesomeIcon
-          onClick={handleBtnXClick}
-          className="change-pic-pass-modal__x-close"
-          icon={faTimes}
-        />
-
         {showErrorCard && (
           <ErrorMsgCard
             onBtnXClickError={onBtnXClickError}
@@ -130,6 +124,12 @@ const ChangePicPassModal = ({
             ))}
           />
         )}
+
+        <FontAwesomeIcon
+          onClick={handleBtnXClick}
+          className="change-pic-pass-modal__x-close"
+          icon={faTimes}
+        />
 
         <input
           className="change-pic-pass-modal__input"

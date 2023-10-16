@@ -8,7 +8,7 @@ const createPost = async (req, res) => {
         newErrorText.push("Post title is too short.");
     }
 
-    if (req.body.postTitle.length > 50) {
+    if (req.body.postTitle.length > 30) {
         newErrorText.push("Post title is too long.");
     }
 
@@ -41,4 +41,21 @@ const createPost = async (req, res) => {
     }
 };
 
-export default { createPost };
+
+
+
+const getAllPosts = async (req, res) => {
+    try {
+        const allPosts = await Post.find();
+        if (!allPosts) {
+            return console.log("No posts found");
+        } else {
+            res.status(200).json({ postsData: allPosts });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error })
+    }
+};
+
+export default { createPost, getAllPosts };

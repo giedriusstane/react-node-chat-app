@@ -21,6 +21,7 @@ const postSchema = mongoose.Schema({
     likes: {
         numberOfLikes: {
             type: Number,
+            default: 0
         },
 
         sendersId: {
@@ -32,7 +33,9 @@ const postSchema = mongoose.Schema({
 
     comments: {
         commentText: {
-            type: String
+            type: [],
+
+
         },
 
         sendersId: {
