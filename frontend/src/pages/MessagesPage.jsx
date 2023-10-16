@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./MessagesPage.scss";
 import ConversationCard from "../components/ConversationCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,17 +6,26 @@ import {
   updateCurrentUserId,
   updateSelectedUserId,
 } from "../../features/authSlice";
+import ErrorMsgCard from "../components/ErrorMsgCard";
 
 const MessagesPage = () => {
   const [responseDataAllMessages, setReponseDataAllMessages] = useState([]);
   const [responseDataAllUsers, setReponseDataAllUsers] = useState([]);
   const [conversations, setConversations] = useState([]);
   const [chatText, setChatText] = useState("");
+  const [errorText, setErrorText] = useState([]);
+  const [showErrorCard, setShowErrorCard] = useState(false);
+
+  const inputMsgSendRef = useRef();
 
   const dispatch = useDispatch();
 
   const currentUserId = useSelector((state) => state.auth.currentUserId);
   const selectedUserId = useSelector((state) => state.auth.selectedUserId);
+
+  useEffect(() => {
+    dispatch(updateSelectedUserId(""));
+  }, []);
 
   const getAllMessages = async () => {
     try {
@@ -64,7 +73,7 @@ const MessagesPage = () => {
 
   useEffect(() => {
     if (responseDataAllMessages.length > 0 && responseDataAllUsers.length > 0) {
-      const usernameToMessagesMap = {};
+      const conversationsMap = new Map();
 
       const currentUserName = responseDataAllUsers.find(
         (user) => user._id === currentUserId
@@ -80,6 +89,7 @@ const MessagesPage = () => {
         responseDataAllUsers.forEach((user) => {
           if (user._id === message.msgUserId) {
             message.username = user.username;
+            message.pictureUrl = user.pictureUrl;
 
             if (message.sendersId === message.msgUserId) {
               message.senderName = user.username;
@@ -90,21 +100,18 @@ const MessagesPage = () => {
         });
 
         if (message.username) {
-          if (!usernameToMessagesMap[message.username]) {
-            usernameToMessagesMap[message.username] = [];
+          if (!conversationsMap.has(message.username)) {
+            conversationsMap.set(message.username, {
+              username: message.username,
+              pictureUrl: message.pictureUrl,
+              messages: [],
+            });
           }
-          usernameToMessagesMap[message.username].push(message);
+          conversationsMap.get(message.username).messages.push(message);
         }
       });
 
-      const sortedConversations = Object.keys(usernameToMessagesMap).map(
-        (username) => {
-          return {
-            username,
-            messages: usernameToMessagesMap[username],
-          };
-        }
-      );
+      const sortedConversations = Array.from(conversationsMap.values());
 
       console.log(sortedConversations);
       console.log(responseDataAllMessages);
@@ -115,6 +122,20 @@ const MessagesPage = () => {
   const handleConversationCardClick = (selectedUsername) => {
     const selectedUsersMsgText = [];
     const selectedUsersSenderNameText = [];
+
+    const selectedUser = responseDataAllUsers.find(
+      (user) => user.username === selectedUsername
+    );
+
+    if (selectedUser) {
+      const userId = selectedUser._id;
+
+      dispatch(updateSelectedUserId(userId));
+
+      console.log(`Selected User ID for ${selectedUsername}: ${userId}`);
+    } else {
+      console.log(`User with username ${selectedUsername} not found.`);
+    }
 
     const conversationWithSelectedUser = conversations.find(
       (conversation) => conversation.username === selectedUsername
@@ -144,8 +165,61 @@ const MessagesPage = () => {
       setChatText(combinedChat);
     }
 
-    dispatch(updateSelectedUserId(selectedUsername));
     console.log(`selecteduserid ${selectedUsername}`);
+    //console.log(selectedUserId);
+  };
+
+  const sendMessage = async (messageData) => {
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(messageData),
+      };
+
+      const response = await fetch(`http://localhost:3000/messages`, options);
+      const jsonData = await response.json();
+      if (response.ok) {
+        console.log(jsonData);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSendBtn = () => {
+    const messageData = {
+      msgText: inputMsgSendRef.current.value,
+      sendersId: currentUserId,
+      receiversId: selectedUserId,
+    };
+
+    const newErrorText = [];
+
+    if (messageData.msgText.length < 3) {
+      newErrorText.push("Message is too short.");
+      setShowErrorCard(true);
+      setErrorText(newErrorText);
+    }
+
+    if (messageData.msgText.length > 1000) {
+      newErrorText.push("Message is too long.");
+      setShowErrorCard(true);
+      setErrorText(newErrorText);
+    }
+
+    if (newErrorText.length === 0) {
+      setShowErrorCard(false);
+      sendMessage(messageData);
+      inputMsgSendRef.current.value = "";
+    }
+  };
+
+  const onBtnXClickError = () => {
+    setShowErrorCard(false);
   };
 
   return (
@@ -155,6 +229,7 @@ const MessagesPage = () => {
           conversations.map((conversation, index) => (
             <ConversationCard
               key={index}
+              userImg={conversation.pictureUrl}
               username={
                 <div>
                   Conversation with{" "}
@@ -189,14 +264,28 @@ const MessagesPage = () => {
             ))}
         </div>
 
-        <div className="messages-page__inputs-container">
-          <input
-            className="messages-page__text-input"
-            type="text"
-            placeholder="write message here..."
+        {showErrorCard && (
+          <ErrorMsgCard
+            onBtnXClickError={onBtnXClickError}
+            msgText={errorText.map((error, index) => (
+              <div key={index}>{error}</div>
+            ))}
           />
-          <button className="messages-page__btn-send">Send</button>
-        </div>
+        )}
+
+        {selectedUserId !== "" && (
+          <div className="messages-page__inputs-container">
+            <input
+              className="messages-page__text-input"
+              type="text"
+              placeholder="write message here..."
+              ref={inputMsgSendRef}
+            />
+            <button onClick={handleSendBtn} className="messages-page__btn-send">
+              Send
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-.change-pic-pass-modal {
+.create-post-modal {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -10,7 +10,7 @@
   left: 50%;
   transform: translate(-50%, -30%);
   border-radius: 0.5rem;
-  width: 50rem;
+  width: 60rem;
   height: 40rem;
   background-color: rgba(199, 222, 215, 0.2);
   justify-content: center;
@@ -26,7 +26,7 @@
     letter-spacing: 0.4rem;
   }
 
-  &__btn-change {
+  &__btn-add-post {
     background-color: rgb(75, 180, 120);
     border: none;
     color: white;
@@ -42,6 +42,6 @@
     color: rgb(69, 74, 72);
     position: absolute;
     top: 2rem;
-    left: 45rem;
+    left: 55rem;
   }
 }

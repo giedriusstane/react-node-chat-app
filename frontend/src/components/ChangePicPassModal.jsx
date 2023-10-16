@@ -109,36 +109,49 @@ const ChangePicPassModal = ({
     }
   };
 
+  const onBtnXClickError = () => {
+    setShowErrorCard(false);
+  };
+
   return (
-    <div className="change-pic-pass-modal">
-      <FontAwesomeIcon
-        onClick={handleBtnXClick}
-        className="change-pic-pass-modal__x-close"
-        icon={faTimes}
-      />
+    <div className="modal-overlay">
+      <div className="change-pic-pass-modal">
+        <FontAwesomeIcon
+          onClick={handleBtnXClick}
+          className="change-pic-pass-modal__x-close"
+          icon={faTimes}
+        />
 
-      {showErrorCard && <ErrorMsgCard msgText={errorText} />}
+        {showErrorCard && (
+          <ErrorMsgCard
+            onBtnXClickError={onBtnXClickError}
+            msgText={errorText.map((error, index) => (
+              <div key={index}>{error}</div>
+            ))}
+          />
+        )}
 
-      <input
-        className="change-pic-pass-modal__input"
-        type={inputType}
-        placeholder={placeholder}
-        ref={placeholder === "picture url" ? inputRef : inputRefPass}
-      />
-      {placeholder === "password" && (
         <input
           className="change-pic-pass-modal__input"
           type={inputType}
           placeholder={placeholder}
-          ref={inputRefPass_2}
+          ref={placeholder === "picture url" ? inputRef : inputRefPass}
         />
-      )}
-      <button
-        onClick={handleBtnUpdate}
-        className="change-pic-pass-modal__btn-change"
-      >
-        Change
-      </button>
+        {placeholder === "password" && (
+          <input
+            className="change-pic-pass-modal__input"
+            type={inputType}
+            placeholder={placeholder}
+            ref={inputRefPass_2}
+          />
+        )}
+        <button
+          onClick={handleBtnUpdate}
+          className="change-pic-pass-modal__btn-change"
+        >
+          Change
+        </button>
+      </div>
     </div>
   );
 };

@@ -92,4 +92,4 @@ const getAllMessages = async (req, res) => {
 
 
 
-export default { sendMessage, getAllMessages};
+export default { sendMessage, getAllMessages };

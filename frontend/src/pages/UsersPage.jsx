@@ -46,6 +46,7 @@ const UsersPage = () => {
           <UserCard
             key={index}
             username={user.username}
+            userImg={user.pictureUrl}
             userId={user._id}
             currentUserId={currentUserId}
           />

@@ -87,33 +87,38 @@ const UserMsgModal = ({ onBtnXClick }) => {
   return (
     <>
       {modalVisibility && (
-        <div className="user-msg-modal">
-          {showErrorCard && (
-            <ErrorMsgCard
-              onBtnXClickError={onBtnXClickError}
-              msgText={errorText.map((error, index) => (
-                <div key={index}>{error}</div>
-              ))}
+        <div className="modal-overlay">
+          <div className="user-msg-modal">
+            {showErrorCard && (
+              <ErrorMsgCard
+                onBtnXClickError={onBtnXClickError}
+                msgText={errorText.map((error, index) => (
+                  <div key={index}>{error}</div>
+                ))}
+              />
+            )}
+
+            <FontAwesomeIcon
+              onClick={handleBtnXClick}
+              className="user-msg-modal__x-close"
+              icon={faTimes}
             />
-          )}
 
-          <FontAwesomeIcon
-            onClick={handleBtnXClick}
-            className="user-msg-modal__x-close"
-            icon={faTimes}
-          />
+            <textarea
+              className="user-msg-modal__textarea"
+              cols="30"
+              rows="15"
+              placeholder="write message here..."
+              ref={textareaRef}
+            ></textarea>
 
-          <textarea
-            className="user-msg-modal__textarea"
-            cols="30"
-            rows="15"
-            placeholder="write message here..."
-            ref={textareaRef}
-          ></textarea>
-
-          <button onClick={handleSendBtn} className="user-msg-modal__btn-send">
-            Send
-          </button>
+            <button
+              onClick={handleSendBtn}
+              className="user-msg-modal__btn-send"
+            >
+              Send
+            </button>
+          </div>
         </div>
       )}
     </>

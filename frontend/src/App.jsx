@@ -7,10 +7,13 @@ import ProfilePage from "./pages/ProfilePage";
 import Toolbar from "./components/Toolbar";
 import MessagesPage from "./pages/MessagesPage";
 import UsersPage from "./pages/UsersPage";
+import PostsPage from "./pages/PostsPage";
+
 
 const App = () => {
   const autologinIs = useSelector((state) => state.auth.isAutologin);
   const location = useLocation();
+
 
   useEffect(() => {
     const removeTokenOnUnload = () => {
@@ -29,6 +32,7 @@ const App = () => {
 
   const pathsWithoutToolbar = ["/", "/login"];
   const shouldRenderToolbar = !pathsWithoutToolbar.includes(location.pathname);
+  
 
   return (
     <>
@@ -60,6 +64,17 @@ const App = () => {
           element={
             localStorage.getItem("token") ? (
               <MessagesPage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
+        <Route
+          path={"/posts"}
+          element={
+            localStorage.getItem("token") ? (
+              <PostsPage />
             ) : (
               <Navigate to="/login" />
             )
