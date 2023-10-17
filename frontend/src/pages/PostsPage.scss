@@ -4,4 +4,11 @@
     flex-wrap: wrap;
     gap: 3rem;
   }
+
+  &__comment {
+    font-size: 1.5rem;
+    background-color: rgb(218, 239, 186);
+    padding: 1rem;
+    margin: 1.2rem;
+  }
 }

@@ -95,7 +95,7 @@ const CreatePostModal = ({ onBtnXClick, onBtnCreatePost }) => {
         }
 
         if (!postData.postImage.startsWith("http")) {
-          newErrorText.push("Bad img url.");
+          newErrorText.push("Bad image url.");
           setShowErrorCard(true);
           setErrorText(newErrorText);
         }

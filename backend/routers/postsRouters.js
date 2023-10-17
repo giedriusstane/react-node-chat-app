@@ -7,6 +7,7 @@ import authMiddleware from "../middlewares/authMiddleware.js";
 
 router.post("/posts", authMiddleware.verifyToken, postsController.createPost);
 router.get("/posts", authMiddleware.verifyToken, postsController.getAllPosts);
+router.post("/postsUpdate", authMiddleware.verifyToken, postsController.updatePost);
 
 
 

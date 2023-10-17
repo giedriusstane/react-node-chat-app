@@ -12,6 +12,12 @@ const createPost = async (req, res) => {
         newErrorText.push("Post title is too long.");
     }
 
+
+    if (!req.body.postImage.startsWith("http")) {
+        newErrorText.push("Bad image url.");
+    }
+
+
     if (newErrorText.length === 0) {
         try {
             const sendersIdToCheck = req.body.sendersId;
@@ -58,4 +64,42 @@ const getAllPosts = async (req, res) => {
     }
 };
 
-export default { createPost, getAllPosts };
+
+
+const updatePost = async (req, res) => {
+    try {
+        const postId = req.body.postId;
+        const post = await Post.findById(postId);
+
+        if (!post) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+
+        if (!post.likes.sendersId.includes(req.userId)
+            && post.sendersId !== req.userId
+            && req.body.likeUpdate === true) {
+            post.likes.numberOfLikes++;
+            post.likes.sendersId.push(req.userId);
+        }
+
+
+
+        if (req.body.comment === true) {
+            post.comments.commentText.push([req.body.commentText, req.userId])
+
+        }
+
+
+        const updatedPost = await post.save();
+
+        console.log("Post updated successfully");
+        res.status(200).json({ message: 'Post updated successfully', updatedPost });
+
+    } catch (error) {
+        console.error('Error updating post:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+export default { createPost, getAllPosts, updatePost };

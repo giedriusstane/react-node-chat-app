@@ -29,10 +29,8 @@ const updateProfile = async (req, res) => {
         const userId = req.userId;
 
         if (req.body.updatedPassword) {
-            // Hash the updated password
             const hashedPassword = await bcrypt.hash(req.body.updatedPassword, 10);
 
-            // Update both pictureUrl and the hashed password
             const user = await User.findOneAndUpdate(
                 { _id: userId },
                 {
@@ -49,7 +47,6 @@ const updateProfile = async (req, res) => {
             console.log('User profile updated successfully');
             res.status(200).json({ message: 'User profile updated successfully' });
         } else {
-            // If updatedPassword is not provided, update only pictureUrl
             const user = await User.findOneAndUpdate(
                 { _id: userId },
                 { pictureUrl: req.body.updatedPictureUrl },

@@ -24,8 +24,9 @@ const postSchema = mongoose.Schema({
             default: 0
         },
 
+
         sendersId: {
-            type: String,
+            type: [],
         }
 
 
