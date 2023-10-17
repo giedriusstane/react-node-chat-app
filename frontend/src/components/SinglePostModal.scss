@@ -94,4 +94,17 @@
     cursor: pointer;
     font-size: 1.4rem;
   }
+
+  &__x-close {
+    font-size: 2.7rem;
+    cursor: pointer;
+    color: rgb(69, 74, 72);
+    position: absolute;
+    top: 2rem;
+    left: 65rem;
+  }
+}
+
+.singlePostModalOpacity {
+  opacity: 1;
 }

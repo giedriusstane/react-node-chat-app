@@ -3,7 +3,10 @@ import "./UserCard.scss";
 import UserMsgModal from "./UserMsgModal";
 import { useDispatch } from "react-redux";
 import { updateSelectedUserId } from "../../features/authSlice";
-import { updateMsgModalVisibility } from "../../features/usersSlice";
+import {
+  updateMsgModalVisibility,
+  updateSinglePostVisibility,
+} from "../../features/usersSlice";
 
 const UserCard = ({ userImg, username, userId, currentUserId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +17,7 @@ const UserCard = ({ userImg, username, userId, currentUserId }) => {
     setIsModalOpen(true);
     dispatch(updateSelectedUserId(userId));
     dispatch(updateMsgModalVisibility(true));
+    dispatch(updateSinglePostVisibility(false));
   };
 
   const handleBtnXClick = () => {

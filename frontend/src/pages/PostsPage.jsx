@@ -95,6 +95,13 @@ const PostsPage = () => {
     }
   };
 
+  const findCommentatorName = (id) => {
+    if (allUsersData) {
+      const userName = allUsersData.find((user) => user._id === id);
+      return userName.username;
+    }
+  };
+
   const updatePost = async (postData) => {
     try {
       const options = {
@@ -126,6 +133,10 @@ const PostsPage = () => {
     };
 
     updatePost(postData);
+  };
+
+  const handleSinglePostModalBtnXClick = () => {
+    setIsSinglePostModalOpen(false);
   };
 
   return (
@@ -161,10 +172,16 @@ const PostsPage = () => {
           idUser={findUserInfo()[2]}
           currentUserId={currentUserId}
           onBtnLikeClick={handleBtnLike}
+          onModalBtnXClick={handleSinglePostModalBtnXClick}
           selectedPost={selectedPost}
           allComments={selectedPost.comments.commentText.map(
             (comment, index) => (
-              <div className="posts-page__comment">{comment}</div>
+              <div key={index} className="posts-page__comment">
+                <div className="posts-page__commentator">
+                  {findCommentatorName(comment[1])}
+                </div>
+                {comment[0]}
+              </div>
             )
           )}
         />
