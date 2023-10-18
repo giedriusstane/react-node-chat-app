@@ -4,7 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./UserMsgModal.scss";
 import ErrorMsgCard from "./ErrorMsgCard";
-import { updateMsgModalVisibility } from "../../features/usersSlice";
+import {
+  updateMsgModalVisibility,
+  updateSinglePostVisibility,
+} from "../../features/usersSlice";
 
 const UserMsgModal = ({ onBtnXClick }) => {
   const [errorText, setErrorText] = useState([]);
@@ -28,6 +31,7 @@ const UserMsgModal = ({ onBtnXClick }) => {
   const handleBtnXClick = () => {
     if (onBtnXClick) {
       onBtnXClick();
+      dispatch(updateSinglePostVisibility(true));
     }
   };
 
@@ -76,6 +80,7 @@ const UserMsgModal = ({ onBtnXClick }) => {
 
     if (newErrorText.length === 0) {
       setShowErrorCard(false);
+      dispatch(updateSinglePostVisibility(true));
       sendMessage(messageData);
     }
   };

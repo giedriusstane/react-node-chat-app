@@ -103,8 +103,35 @@
     top: 2rem;
     left: 65rem;
   }
+
+  &__top-container-invisible {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__comments-container-invisible {
+    border: 0.1rem solid black;
+
+    padding: 1rem;
+  }
+
+  &__top-container-invisible {
+    display: flex;
+    gap: 2rem;
+  }
 }
 
-.singlePostModalOpacity {
-  opacity: 1;
+.single-post-modal__invisible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 5rem;
+  position: absolute;
+  z-index: 2;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  width: 100%;
+  height: 100vh;
 }

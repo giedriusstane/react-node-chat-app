@@ -87,14 +87,30 @@ const SinglePostModal = ({
   };
 
   return (
-    <div className={singlePostVisibility ? "modal-overlay" : ""}>
-      <div className="single-post-modal">
+    <div
+      className={
+        singlePostVisibility ? "modal-overlay" : "single-post-modal__overlay"
+      }
+    >
+      <div
+        className={
+          singlePostVisibility
+            ? "single-post-modal"
+            : "single-post-modal__invisible"
+        }
+      >
         <FontAwesomeIcon
           onClick={handleBtnXClick}
           className="single-post-modal__x-close"
           icon={faTimes}
         />
-        <div className="single-post-modal__top-container">
+        <div
+          className={
+            singlePostVisibility
+              ? "single-post-modal__top-container"
+              : "single-post-modal__top-container-invisible"
+          }
+        >
           <img
             className="post-card__post-img"
             src={imageSrc}
@@ -121,7 +137,13 @@ const SinglePostModal = ({
           </div>
         </div>
 
-        <div className="single-post-modal__comments-container">
+        <div
+          className={
+            singlePostVisibility
+              ? "single-post-modal__comments-container"
+              : "single-post-modal__comments-container-invisible"
+          }
+        >
           <div className="single-post-modal__comments-field">{allComments}</div>
           <div className="single-post-modal__comments-inputs-container">
             <input
