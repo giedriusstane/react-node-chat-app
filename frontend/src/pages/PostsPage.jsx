@@ -5,6 +5,8 @@ import PostCard from "../components/PostCard";
 import SinglePostModal from "../components/SinglePostModal";
 import { useDispatch } from "react-redux";
 import { updateCurrentUserId } from "../../features/authSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const PostsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -141,7 +143,28 @@ const PostsPage = () => {
 
   return (
     <div className="posts-page">
-      <button onClick={handleBtnCreatePost}>Create Post</button>
+      <div className="posts-page__sorting-container">
+        <h4>sort by:</h4>
+        {/* <FontAwesomeIcon icon={faChevronDown} /> */}
+        <button className="posts-page__btn-sorting">
+          Comments Amount <FontAwesomeIcon icon={faChevronDown} />
+        </button>
+
+        <button className="posts-page__btn-sorting">
+          Likes Amount <FontAwesomeIcon icon={faChevronDown} />
+        </button>
+
+        <button className="posts-page__btn-sorting">
+          Time Created <FontAwesomeIcon icon={faChevronDown} />
+        </button>
+
+        <button
+          className="posts-page__btn-create-post"
+          onClick={handleBtnCreatePost}
+        >
+          Create Post
+        </button>
+      </div>
       {isModalOpen && (
         <CreatePostModal
           onBtnXClick={handleCloseXModal}
