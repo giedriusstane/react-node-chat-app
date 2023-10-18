@@ -249,7 +249,7 @@ const MessagesPage = () => {
       </div>
       <div className="messages-page__chat-container">
         <div className="messages-page__chat-field">
-          {chatText &&
+          {chatText ? (
             chatText.split("\n").map((line, index) => (
               <h3
                 key={index}
@@ -261,7 +261,12 @@ const MessagesPage = () => {
               >
                 {line}
               </h3>
-            ))}
+            ))
+          ) : (
+            <p className="messages-page__no-conversation-selected">
+              No conversation selected
+            </p>
+          )}
         </div>
 
         {showErrorCard && (

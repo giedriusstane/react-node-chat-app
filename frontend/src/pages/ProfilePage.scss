@@ -5,26 +5,30 @@
   margin-top: 10rem;
 
   &__title {
+    text-align: center;
     font-size: 2rem;
     margin-bottom: 5rem;
+    z-index: 2;
   }
 
   &__container {
     display: flex;
     flex-direction: column;
+    z-index: 2;
   }
 
   &__user-picture {
     border: 0.1rem solid rgb(206, 206, 206);
-    width: 15rem;
-    height: 15rem;
+    width: 20rem;
+    height: 20rem;
     object-fit: cover;
     border-radius: 0.5rem;
+    box-shadow: 0.5rem 0.1rem 0.7rem 0.2rem rgba(124, 133, 128, 0.2)
   }
 
   &__btn-change-picture {
     margin-top: 2rem;
-    background-color: rgb(75, 180, 120);
+    background-color: #2ec4b6;
     border: none;
     color: white;
     padding: 1rem;
@@ -35,7 +39,7 @@
 
   &__btn-change-password {
     margin-top: 2rem;
-    background-color: rgb(180, 101, 75);
+    background-color: #ff9f1c;
     border: none;
     color: white;
     padding: 1rem;

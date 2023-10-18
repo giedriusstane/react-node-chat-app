@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ErrorMsgCard from "../components/ErrorMsgCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -64,13 +64,24 @@ const LoginPage = () => {
 
   return (
     <div className="login-page">
+      <h2 className="login-page__login-text">Login</h2>
       {showErrorCard && (
         <ErrorMsgCard onBtnXClickError={onBtnXClickError} msgText={errorText} />
       )}
 
       <div className="login-page__inputs-container">
-        <input type="text" placeholder="username" ref={inputUsernameRef} />
-        <input type="password" placeholder="password" ref={inputPasswordRef} />
+        <input
+          className="login-page__input"
+          type="text"
+          placeholder="username"
+          ref={inputUsernameRef}
+        />
+        <input
+          className="login-page__input"
+          type="password"
+          placeholder="password"
+          ref={inputPasswordRef}
+        />
 
         <button onClick={handleLoginBtn} className="login-page__btn-login">
           Login
@@ -81,10 +92,19 @@ const LoginPage = () => {
             onClick={handleCheckBoxAutologin}
             className="login-page__checkbox"
           >
-            {autologinIs && <FontAwesomeIcon icon={faCheck} />}
+            {autologinIs && (
+              <FontAwesomeIcon className="login-page__icon" icon={faCheck} />
+            )}
           </div>
 
           <h4 className="login-page__autoligin-text">Stay signed in</h4>
+        </div>
+        <div className="login-page__line"></div>
+        <div className="login-page__question-text">
+          Don't have an account?{" "}
+          <Link className="login-page__register-link" to={"/"}>
+            Create here!
+          </Link>
         </div>
       </div>
     </div>

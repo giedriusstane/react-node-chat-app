@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ErrorMsgCard from "../components/ErrorMsgCard";
 import "./RegistrationPage.scss";
 
@@ -108,15 +108,22 @@ const RegistrationPage = () => {
       )}
 
       <div className="registration-page__inputs-container">
-        <input type="text" placeholder="username" ref={inputUsernameRef} />
+        <input
+          className="registration-page__input"
+          type="text"
+          placeholder="username"
+          ref={inputUsernameRef}
+        />
 
         <input
+          className="registration-page__input"
           type="password"
           placeholder="password"
           ref={inputPassword_1Ref}
         />
 
         <input
+          className="registration-page__input"
           type="password"
           placeholder="password"
           ref={inputPassword_2Ref}
@@ -128,6 +135,12 @@ const RegistrationPage = () => {
         >
           Register
         </button>
+        <div className="registration-page__question-text">
+          Already have an account?{" "}
+          <Link className="registration-page__login-link" to={"/login"}>
+            Login here!
+          </Link>
+        </div>
       </div>
     </div>
   );

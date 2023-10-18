@@ -6,6 +6,7 @@
   border-radius: 0.5rem;
   border: 0.1rem solid rgba(236, 236, 236, 0.3);
   box-shadow: 0.1rem 0.1rem 1rem 0.5rem rgba(187, 187, 187, 0.08);
+  z-index: 2;
 
   &__post-img {
     object-fit: cover;

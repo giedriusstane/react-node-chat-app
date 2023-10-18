@@ -3,10 +3,13 @@
   gap: 2rem;
   width: 25rem;
   height: 10rem;
-  border: 0.1rem solid black;
-  border-radius: 0.3rem;
   padding: 1rem;
   cursor: pointer;
+  border: 0.1rem solid rgba(202, 195, 178, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(1rem);
+  box-shadow: 0.1rem 0.4rem 1rem 0.5rem rgba(177, 178, 171, 0.1);
 
   &__user-img {
     border: 0.1rem solid rgb(206, 206, 206);

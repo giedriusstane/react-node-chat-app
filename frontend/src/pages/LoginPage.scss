@@ -4,6 +4,13 @@
   align-items: center;
   margin-top: 10rem;
 
+  &__login-text {
+    font-weight: 300;
+    font-size: 2rem;
+    padding-bottom: 5rem;
+    z-index: 2;
+  }
+
   &__registration-text {
     font-weight: 300;
     font-size: 2rem;
@@ -11,30 +18,53 @@
   }
 
   &__inputs-container {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     width: 30rem;
     gap: 2rem;
-    border: 0.1rem solid rgb(229, 229, 229);
+    border: 0.1rem solid rgba(202, 195, 178, 0.2);
     padding: 3rem;
-    background-color: rgb(251, 251, 251);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 0.5rem;
+    backdrop-filter: blur(1rem);
+    box-shadow: 0.1rem 0.4rem 1rem 0.5rem rgba(177, 178, 171, 0.1);
   }
 
   &__btn-login {
-    background-color: rgb(75, 180, 120);
+    background-color: #2ec4b6;
     border: none;
     color: white;
     padding: 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+  }
+
+  &__btn-login:hover {
+    background-color: #23988d;
+  }
+
+  &__input {
+    height: 3rem;
+    font-size: 1.7rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid rgb(212, 212, 212);
+    padding: 0.3rem;
+  }
+
+  &__input::placeholder {
+    color: gray;
   }
 
   &__autologin-container {
     display: flex;
     align-items: center;
     gap: 2rem;
+    margin-top: 2rem;
   }
 
   &__autoligin-text {
@@ -46,10 +76,51 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0.1rem solid black;
+    border: 0.1rem solid #2ec4b6;
     width: 2rem;
     height: 2rem;
     border-radius: 0.3rem;
     cursor: pointer;
+    transition-property: border background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+  }
+
+  &__checkbox:hover {
+    background-color: #d7e4e3;
+    border: 0.1rem solid #23988d;
+  }
+
+  &__icon {
+    color: #2ec4b6;
+  }
+
+  &__line {
+    width: 100%;
+    height: 0.1rem;
+    background-color: rgb(169, 169, 169);
+    margin-top: 2rem;
+  }
+
+  &__question-text {
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  &__register-link {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #2ec4b6;
+    margin-top: 1rem;
+    transition-property: color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+  }
+
+  &__register-link:hover {
+    color: #23988d;
   }
 }
