@@ -57,6 +57,16 @@
     width: 60%;
   }
 
+  &__btn-like-disable {
+    background-color: rgb(144, 214, 174);
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    width: 60%;
+  }
+
   &__comments-container {
     border: 0.1rem solid black;
     width: 100%;

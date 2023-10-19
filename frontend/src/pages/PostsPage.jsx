@@ -3,8 +3,12 @@ import "./PostsPage.scss";
 import CreatePostModal from "../components/CreatePostModal";
 import PostCard from "../components/PostCard";
 import SinglePostModal from "../components/SinglePostModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentUserId } from "../../features/authSlice";
+import {
+  updateSelectedPostSendersId,
+  updateSendersIdMadeLike,
+} from "../../features/usersSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -44,24 +48,12 @@ const PostsPage = () => {
 
   useEffect(() => {
     getAllPosts();
+
+    if(allPostsData){
+      dispatch(updateSendersIdMadeLike(allPostsData.likes.sendersId));
+    }
+   
   }, []);
-
-  const handlePostCardClick = (post) => {
-    setIsSinglePostModalOpen(true);
-    setSelectedPost(post);
-  };
-
-  const handleBtnCreatePost = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleBtnAddPost = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCloseXModal = () => {
-    setIsModalOpen(false);
-  };
 
   const getAllUsers = async () => {
     try {
@@ -94,6 +86,7 @@ const PostsPage = () => {
       const user = allUsersData.find(
         (user) => user._id === selectedPost.sendersId
       );
+
       return user
         ? [user.pictureUrl, user.username, user._id]
         : "https://pbs.twimg.com/media/FLrT7QiVQAIivpt.jpg:large";
@@ -105,6 +98,24 @@ const PostsPage = () => {
       const userName = allUsersData.find((user) => user._id === id);
       return userName.username;
     }
+  };
+
+  const handlePostCardClick = (post) => {
+    setIsSinglePostModalOpen(true);
+    setSelectedPost(post);
+    dispatch(updateSelectedPostSendersId(post.sendersId));
+  };
+
+  const handleBtnCreatePost = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleBtnAddPost = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCloseXModal = () => {
+    setIsModalOpen(false);
   };
 
   const updatePost = async (postData) => {
@@ -240,9 +251,9 @@ const PostsPage = () => {
           allPostsData.map((post, index) => {
             const createdAtDate = new Date(Date.parse(post.createdAt));
 
-            const formattedDate = `${createdAtDate.getFullYear()} ${
+            const formattedDate = `${createdAtDate.getFullYear()} - ${
               createdAtDate.getMonth() + 1
-            } ${createdAtDate.getDate()} ${createdAtDate.getHours()}:${createdAtDate.getMinutes()}:${createdAtDate.getSeconds()}`;
+            } - ${createdAtDate.getDate()} ${createdAtDate.getHours()}:${createdAtDate.getMinutes()}:${createdAtDate.getSeconds()}`;
 
             return (
               <PostCard

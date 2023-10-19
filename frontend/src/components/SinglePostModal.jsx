@@ -24,6 +24,14 @@ const SinglePostModal = ({
     (state) => state.users.singlePostVisibility
   );
 
+  const selectedPostSendersId = useSelector(
+    (state) => state.users.selectedPostSendersId
+  );
+
+  const sendersIdMadeLike = useSelector(
+    (state) => state.users.sendersIdMadeLike
+  );
+
   const defaultImage = "https://pbs.twimg.com/media/FLrT7QiVQAIivpt.jpg:large";
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
@@ -126,12 +134,20 @@ const SinglePostModal = ({
             />
             <h3 className="single-post-modal__post-title">{title}</h3>
             <div className="single-post-modal__likes-container">
-              <button
-                onClick={handleBtnLike}
-                className="single-post-modal__btn-like"
-              >
-                Like
-              </button>
+              {selectedPostSendersId !== currentUserId ||
+              sendersIdMadeLike.map((id) => id !== currentUserId) ? (
+                <button
+                  onClick={handleBtnLike}
+                  className="single-post-modal__btn-like"
+                >
+                  Like
+                </button>
+              ) : (
+                <button className="single-post-modal__btn-like-disable">
+                  Like
+                </button>
+              )}
+
               <h4>Likes: {likes}</h4>
             </div>
           </div>
