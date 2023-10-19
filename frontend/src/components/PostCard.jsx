@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./PostCard.scss";
 
-const PostCard = ({ img, title, likes, comments, onPostCardClick }) => {
+const PostCard = ({
+  img,
+  title,
+  likes,
+  comments,
+  onPostCardClick,
+  createdAt,
+}) => {
   const defaultImage = "https://pbs.twimg.com/media/FLrT7QiVQAIivpt.jpg:large";
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
@@ -30,6 +37,7 @@ const PostCard = ({ img, title, likes, comments, onPostCardClick }) => {
       <h3>{title}</h3>
       <h4>Likes: {likes}</h4>
       <p>Comments: {comments}</p>
+      <h5>Created At: {createdAt}</h5>
     </div>
   );
 };

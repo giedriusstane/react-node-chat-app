@@ -15,6 +15,9 @@ const PostsPage = () => {
   const [isSinglePostModalOpen, setIsSinglePostModalOpen] = useState(false);
   const [allUsersData, setAllUsersData] = useState();
   const [currentUserId, setCurrentUserId] = useState();
+  const [commentsAmountSort, setCommentsAmountSort] = useState(false);
+  const [likesAmountSort, setLikesAmountSort] = useState(false);
+  const [timeCreatedSort, setTimeCreatedSort] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -141,21 +144,81 @@ const PostsPage = () => {
     setIsSinglePostModalOpen(false);
   };
 
+  const handleBtnCommentsAmount = () => {
+    setCommentsAmountSort(!commentsAmountSort);
+
+    const sortedArray = [...allPostsData].sort((a, b) => {
+      if (commentsAmountSort) {
+        return a.comments.commentText.length - b.comments.commentText.length;
+      } else {
+        return b.comments.commentText.length - a.comments.commentText.length;
+      }
+    });
+
+    setAllPostData(sortedArray);
+  };
+
+  const handleBtnLikesAmount = () => {
+    setLikesAmountSort(!likesAmountSort);
+
+    const sortedArray = [...allPostsData].sort((a, b) => {
+      if (likesAmountSort) {
+        return a.likes.numberOfLikes - b.likes.numberOfLikes;
+      } else {
+        return b.likes.numberOfLikes - a.likes.numberOfLikes;
+      }
+    });
+
+    setAllPostData(sortedArray);
+  };
+
+  const handleBtnTimeCreated = () => {
+    setTimeCreatedSort(!timeCreatedSort);
+
+    const sortedArray = [...allPostsData].sort((a, b) => {
+      if (timeCreatedSort) {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      } else {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+    });
+
+    setAllPostData(sortedArray);
+  };
+
   return (
     <div className="posts-page">
       <div className="posts-page__sorting-container">
         <h4>sort by:</h4>
-        {/* <FontAwesomeIcon icon={faChevronDown} /> */}
-        <button className="posts-page__btn-sorting">
-          Comments Amount <FontAwesomeIcon icon={faChevronDown} />
+
+        <button
+          onClick={handleBtnCommentsAmount}
+          className="posts-page__btn-sorting"
+        >
+          Comments Amount{" "}
+          <FontAwesomeIcon
+            icon={commentsAmountSort ? faChevronUp : faChevronDown}
+          />
         </button>
 
-        <button className="posts-page__btn-sorting">
-          Likes Amount <FontAwesomeIcon icon={faChevronDown} />
+        <button
+          onClick={handleBtnLikesAmount}
+          className="posts-page__btn-sorting"
+        >
+          Likes Amount{" "}
+          <FontAwesomeIcon
+            icon={likesAmountSort ? faChevronUp : faChevronDown}
+          />
         </button>
 
-        <button className="posts-page__btn-sorting">
-          Time Created <FontAwesomeIcon icon={faChevronDown} />
+        <button
+          onClick={handleBtnTimeCreated}
+          className="posts-page__btn-sorting"
+        >
+          Time Created{" "}
+          <FontAwesomeIcon
+            icon={timeCreatedSort ? faChevronUp : faChevronDown}
+          />
         </button>
 
         <button
@@ -174,16 +237,25 @@ const PostsPage = () => {
 
       <div className="posts-page__posts-container">
         {allPostsData &&
-          allPostsData.map((post, index) => (
-            <PostCard
-              onPostCardClick={() => handlePostCardClick(post)}
-              key={index}
-              img={post.image}
-              title={post.title}
-              likes={post.likes.numberOfLikes}
-              comments={post.comments.commentText.length}
-            />
-          ))}
+          allPostsData.map((post, index) => {
+            const createdAtDate = new Date(Date.parse(post.createdAt));
+
+            const formattedDate = `${createdAtDate.getFullYear()} ${
+              createdAtDate.getMonth() + 1
+            } ${createdAtDate.getDate()} ${createdAtDate.getHours()}:${createdAtDate.getMinutes()}:${createdAtDate.getSeconds()}`;
+
+            return (
+              <PostCard
+                onPostCardClick={() => handlePostCardClick(post)}
+                key={index}
+                img={post.image}
+                title={post.title}
+                likes={post.likes.numberOfLikes}
+                comments={post.comments.commentText.length}
+                createdAt={formattedDate}
+              />
+            );
+          })}
       </div>
       {isSinglePostModalOpen && (
         <SinglePostModal
