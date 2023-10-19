@@ -36,6 +36,11 @@ const SinglePostModal = ({
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
   useEffect(() => {
+    //
+    console.log(sendersIdMadeLike);
+  }, []);
+
+  useEffect(() => {
     const checkImage = new Image();
     checkImage.src = img;
 
@@ -86,6 +91,7 @@ const SinglePostModal = ({
     };
 
     updatePost(postData);
+    inputCommentRef.current.value = "";
   };
 
   const handleBtnXClick = () => {
@@ -134,8 +140,8 @@ const SinglePostModal = ({
             />
             <h3 className="single-post-modal__post-title">{title}</h3>
             <div className="single-post-modal__likes-container">
-              {selectedPostSendersId !== currentUserId ||
-              sendersIdMadeLike.map((id) => id !== currentUserId) ? (
+              {selectedPostSendersId !== currentUserId &&
+              !sendersIdMadeLike.includes(currentUserId) ? (
                 <button
                   onClick={handleBtnLike}
                   className="single-post-modal__btn-like"

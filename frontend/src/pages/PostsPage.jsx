@@ -3,7 +3,7 @@ import "./PostsPage.scss";
 import CreatePostModal from "../components/CreatePostModal";
 import PostCard from "../components/PostCard";
 import SinglePostModal from "../components/SinglePostModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateCurrentUserId } from "../../features/authSlice";
 import {
   updateSelectedPostSendersId,
@@ -48,11 +48,6 @@ const PostsPage = () => {
 
   useEffect(() => {
     getAllPosts();
-
-    if(allPostsData){
-      dispatch(updateSendersIdMadeLike(allPostsData.likes.sendersId));
-    }
-   
   }, []);
 
   const getAllUsers = async () => {
@@ -104,6 +99,7 @@ const PostsPage = () => {
     setIsSinglePostModalOpen(true);
     setSelectedPost(post);
     dispatch(updateSelectedPostSendersId(post.sendersId));
+    dispatch(updateSendersIdMadeLike(post.likes.sendersId));
   };
 
   const handleBtnCreatePost = () => {
