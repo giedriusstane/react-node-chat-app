@@ -11,21 +11,13 @@ html {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  // background: linear-gradient(125deg, #ffffff 0%, #ffdda2 100%);
-  //naudojamas background-image: url("https://static.vecteezy.com/system/resources/previews/020/911/349/non_2x/gradient-blur-background-free-png.png");
-  // background-image: url("https://mobilesolutions.pt/wp-content/uploads/2016/02/Silver-Blur-Background-Wallpaper.jpg");
-  // background-position: center;
-  // background-size: cover;
-  // background-repeat: repeat-y;
-  // height: 100vh;
-  // overflow-y: hidden;
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(33, 36, 42);
 }
 
 .modal-overlay {
-  position: absolute;
-  background-color: rgba(199, 222, 215, 0.2);
-  backdrop-filter: blur(1.7rem);
+  position: fixed;
+  backdrop-filter: blur(2rem);
   width: 100%;
   height: 100vh;
   z-index: 3;

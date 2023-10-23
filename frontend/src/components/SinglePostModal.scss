@@ -4,40 +4,47 @@
   align-items: center;
   gap: 2rem;
   border: 0.1rem solid rgba(212, 212, 212, 0.4);
-  padding: 5rem;
-  position: absolute;
+  padding: 3rem 4rem 6rem 4rem;
+  position: fixed;
   z-index: 2;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
-  border-radius: 0.5rem;
   width: 70rem;
-  height: 60rem;
-  background-color: rgba(199, 222, 215, 0.2);
-  backdrop-filter: blur(1.5rem);
-  box-shadow: 0.4rem 0.1rem 0.7rem 0.2rem rgba(150, 150, 150, 0.1);
+  height: 70rem;
+  border: 0.1rem solid rgba(67, 67, 67, 0.3);
+  background: linear-gradient(
+    120deg,
+    rgb(42, 44, 45, 1) 0%,
+    rgb(37, 38, 40, 1) 50%,
+    rgb(30, 31, 34, 1) 100%
+  );
+  border-radius: 2rem;
+  box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
 
   &__top-container {
     display: flex;
     gap: 2rem;
-    height: 40%;
+    height: 35%;
     width: 100%;
+    justify-content: space-between;
   }
 
   &__post-img {
     object-fit: cover;
     width: 50%;
-    height: 100%;
+    border-radius: 1rem;
+  }
+
+  &__post-title {
+    color: #2ec4b6;
+    font-size: 2rem;
   }
 
   &__right-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-
-  &__post-title {
-    font-size: 2rem;
   }
 
   &__likes-container {
@@ -47,35 +54,56 @@
   }
 
   &__btn-like {
-    background-color: rgb(75, 180, 120);
+    background-color: #2ec4b6;
     border: none;
     color: white;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     cursor: pointer;
-    font-size: 1.4rem;
-    width: 60%;
+    font-size: 1.6rem;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    width: 50%;
+  }
+
+  &__btn-like:hover {
+    background-color: #23988d;
+  }
+
+  &__likes {
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  &__num-likes {
+    color: #2ec4b6;
+    font-size: 2rem;
+    padding-left: 1rem;
   }
 
   &__btn-like-disable {
-    background-color: rgb(144, 214, 174);
+    background-color: #7cbdb6;
     border: none;
     color: white;
     padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 1.4rem;
-    width: 60%;
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    width: 50%;
+    cursor: not-allowed;
   }
 
   &__comments-container {
-    border: 0.1rem solid black;
     width: 100%;
     height: 60%;
-    padding: 1rem;
   }
 
   &__comments-field {
-    border: 0.1rem solid black;
+    border: 0.1rem solid rgba(67, 67, 67, 0.3);
+    background-color: rgb(33, 36, 42);
+    border-radius: 2rem;
+    box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
     padding: 2rem;
     gap: 2rem;
     padding: 1rem;
@@ -85,30 +113,43 @@
 
   &__comments-inputs-container {
     display: flex;
+    flex-direction: column;
     margin-top: 1rem;
     gap: 1rem;
-    justify-content: space-between;
   }
 
   &__input-comments {
-    width: 85%;
-    height: 4.1rem;
+    height: 4.5rem;
+    font-size: 1.7rem;
+    border-radius: 1rem;
+    border: 0.1rem solid rgba(67, 67, 67, 0.3);
+    padding-left: 1rem;
+    background-color: rgb(47, 48, 50);
+    color: white;
+    resize: none;
+  }
+
+  &__input-comments:focus {
+    outline: 0.1rem solid #23988d;
   }
 
   &__btn-comment {
-    background-color: rgb(75, 180, 120);
+    background-color: #2ec4b6;
     border: none;
     color: white;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
   }
 
   &__x-close {
     font-size: 2.7rem;
     cursor: pointer;
-    color: rgb(69, 74, 72);
+    color: rgb(255, 255, 255);
     position: absolute;
     top: 2rem;
     left: 65rem;
@@ -128,6 +169,13 @@
   &__top-container-invisible {
     display: flex;
     gap: 2rem;
+  }
+
+  &__line {
+    width: 100%;
+    height: 0.1rem;
+    background-color: rgb(76, 76, 76);
+    margin-bottom: 0.25rem;
   }
 }
 

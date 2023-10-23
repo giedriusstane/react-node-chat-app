@@ -64,7 +64,6 @@ const CreatePostModal = ({ onBtnXClick, onBtnCreatePost }) => {
       const jsonData = await response.json();
       if (response.ok) {
         console.log(jsonData);
-        // dispatch(updateMsgModalVisibility(false));
       }
     } catch (error) {
       console.log(error);

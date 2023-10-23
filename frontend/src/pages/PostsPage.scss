@@ -2,41 +2,59 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10rem;
-  gap: 5rem;
+  margin-top: 12rem;
+  gap: 2rem;
 
   &__posts-container {
     display: flex;
     flex-wrap: wrap;
-    width: 68%;
-    gap: 3rem;
+    width: 70%;
+    gap: 4.2rem;
+    padding: 3rem;
+    margin-top: 0rem;
+    margin-bottom: 10rem;
   }
 
   &__comment {
     font-size: 1.5rem;
-    background-color: rgb(218, 239, 186);
+    border: 0.1rem solid rgba(67, 67, 67, 0.3);
+    background: linear-gradient(
+      120deg,
+      rgb(42, 44, 45, 1) 0%,
+      rgb(37, 38, 40, 1) 50%,
+      rgb(30, 31, 34, 1) 100%
+    );
+    border-radius: 2rem;
+    box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
     padding: 1rem;
     margin: 1.2rem;
+    color: white;
   }
 
   &__commentator {
     font-size: 1.2rem;
     padding-bottom: 1rem;
     padding-right: 2rem;
+    color: #2ec4b6;
   }
 
   &__sorting-container {
+    position: sticky;
+    top: 10rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 70%;
     height: 7rem;
-    border: 0.1rem solid rgba(202, 195, 178, 0.2);
     padding: 3rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 0.5rem;
-    backdrop-filter: blur(1rem);
-    box-shadow: 0.1rem 0.4rem 1rem 0.5rem rgba(177, 178, 171, 0.1);
+    border-radius: 2rem;
+    background: linear-gradient(
+      120deg,
+      rgb(42, 44, 45) 0%,
+      rgb(37, 38, 40) 50%,
+      rgb(30, 31, 34) 100%
+    );
+    box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
   }
 
   &__btn-sorting {
@@ -44,11 +62,12 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background-color: white;
     padding: 0.5rem;
-    // width: 25rem;
+    font-weight: 800;
     font-size: 1.4rem;
     border-radius: 0.5rem;
+    background-color: rgba(240, 240, 240, 0);
+    color: white;
     border: none;
     cursor: pointer;
   }

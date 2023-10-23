@@ -118,6 +118,10 @@ const SinglePostModal = ({
           className="single-post-modal__x-close"
           icon={faTimes}
         />
+
+        <h3 className="single-post-modal__post-title">{title}</h3>
+        <div className="single-post-modal__line"></div>
+
         <div
           className={
             singlePostVisibility
@@ -126,7 +130,7 @@ const SinglePostModal = ({
           }
         >
           <img
-            className="post-card__post-img"
+            className="single-post-modal__post-img"
             src={imageSrc}
             alt="post image"
           />
@@ -138,7 +142,6 @@ const SinglePostModal = ({
               userId={idUser}
               currentUserId={currentUserId}
             />
-            <h3 className="single-post-modal__post-title">{title}</h3>
             <div className="single-post-modal__likes-container">
               {selectedPostSendersId !== currentUserId &&
               !sendersIdMadeLike.includes(currentUserId) ? (
@@ -154,7 +157,10 @@ const SinglePostModal = ({
                 </button>
               )}
 
-              <h4>Likes: {likes}</h4>
+              <h4 className="single-post-modal__likes">
+                Likes{" "}
+                <span className="single-post-modal__num-likes">{likes}</span>{" "}
+              </h4>
             </div>
           </div>
         </div>
@@ -168,12 +174,15 @@ const SinglePostModal = ({
         >
           <div className="single-post-modal__comments-field">{allComments}</div>
           <div className="single-post-modal__comments-inputs-container">
-            <input
+            <textarea
               className="single-post-modal__input-comments"
               type="text"
               placeholder="write comment here..."
               ref={inputCommentRef}
-            />
+              cols="30"
+              rows="10"
+            ></textarea>
+
             <button
               onClick={handleBtnComment}
               className="single-post-modal__btn-comment"

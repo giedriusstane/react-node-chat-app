@@ -135,6 +135,7 @@ const RegistrationPage = () => {
         >
           Register
         </button>
+        <div className="registration-page__line"></div>
         <div className="registration-page__question-text">
           Already have an account?{" "}
           <Link className="registration-page__login-link" to={"/login"}>

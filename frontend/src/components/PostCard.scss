@@ -1,17 +1,59 @@
 .post-card {
-  width: 19rem;
-  height: 29rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22rem;
+  height: 35rem;
   padding: 1rem;
   cursor: pointer;
-  border-radius: 0.5rem;
-  border: 0.1rem solid rgba(236, 236, 236, 0.3);
-  box-shadow: 0.1rem 0.1rem 1rem 0.5rem rgba(187, 187, 187, 0.08);
-  z-index: 2;
+  border: 0.1rem solid rgba(67, 67, 67, 0.3);
+  background: linear-gradient(
+    120deg,
+    rgb(42, 44, 45) 0%,
+    rgb(37, 38, 40) 50%,
+    rgb(30, 31, 34) 100%
+  );
+  border-radius: 2rem;
+  box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
 
   &__post-img {
     object-fit: cover;
-    width: 17rem;
+    width: 20rem;
     height: 15rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: 2.2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    color: white;
+    align-self: flex-start;
+    color: #2ec4b6;
+  }
+
+  &__likes,
+  &__comments {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    color: white;
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+
+  &__created-at {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(199, 199, 199);
+    margin-top: 3.3rem;
+    align-self: flex-start;
+  }
+
+  &__space {
+    margin-left: 1rem;
   }
 }

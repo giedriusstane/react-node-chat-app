@@ -2,49 +2,57 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 10rem;
+  margin-top: 20rem;
 
   &__title {
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 5rem;
-    z-index: 2;
+    margin-bottom: 1rem;
+    color: #2ec4b6;
+  }
+
+  &__welcome {
+    color: #ffffff;
   }
 
   &__container {
     display: flex;
     flex-direction: column;
-    z-index: 2;
+    align-items: center;
+    width: 30rem;
+    height: 50rem;
+    padding: 3rem;
+    border: 0.1rem solid rgba(67, 67, 67, 0.3);
+    background: linear-gradient(
+      120deg,
+      rgb(42, 44, 45) 0%,
+      rgb(37, 38, 40) 50%,
+      rgb(30, 31, 34) 100%
+    );
+    border-radius: 2rem;
+    box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
+    gap: 2rem;
   }
 
   &__user-picture {
-    border: 0.1rem solid rgb(206, 206, 206);
+    margin-bottom: 1rem;
     width: 20rem;
     height: 20rem;
     object-fit: cover;
-    border-radius: 0.5rem;
-    box-shadow: 0.5rem 0.1rem 0.7rem 0.2rem rgba(124, 133, 128, 0.2)
+    border-radius: 1rem;
   }
 
-  &__btn-change-picture {
-    margin-top: 2rem;
+  &__btn-change {
     background-color: #2ec4b6;
     border: none;
     color: white;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     cursor: pointer;
-    font-size: 1.4rem;
-  }
-
-  &__btn-change-password {
-    margin-top: 2rem;
-    background-color: #ff9f1c;
-    border: none;
-    color: white;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    width: 20rem;
   }
 }

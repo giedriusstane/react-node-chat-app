@@ -2,47 +2,64 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  border: 0.1rem solid rgba(212, 212, 212, 0.4);
   padding: 5rem;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
-  border-radius: 0.5rem;
   width: 60rem;
   height: 40rem;
-  background-color: rgba(199, 222, 215, 0.2);
-  justify-content: center;
-  backdrop-filter: blur(1.5rem);
-  box-shadow: 0.4rem 0.1rem 0.7rem 0.2rem rgba(150, 150, 150, 0.1);
+  border: 0.1rem solid rgba(67, 67, 67, 0.3);
+  background: linear-gradient(
+    120deg,
+    rgb(42, 44, 45) 0%,
+    rgb(37, 38, 40) 50%,
+    rgb(30, 31, 34) 100%
+  );
+  border-radius: 2rem;
+  box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
 
   &__textarea {
-    border: 0.1rem solid rgb(230, 230, 230);
-    border-radius: 0.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    border: 0.1rem solid rgba(67, 67, 67, 0.3);
+    padding-left: 1rem;
+    background-color: rgb(47, 48, 50);
+    color: white;
     font-size: 1.4rem;
     height: 24rem;
     letter-spacing: 0.4rem;
     resize: none;
   }
 
+  &__textarea:focus {
+    outline: 0.1rem solid #23988d;
+  }
+
   &__btn-send {
-    background-color: rgb(75, 180, 120);
+    background-color: #2ec4b6;
     border: none;
     color: white;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+  }
+
+  &__btn-send:hover {
+    background-color: #23988d;
   }
 
   &__x-close {
     font-size: 2.7rem;
     cursor: pointer;
-    color: rgb(69, 74, 72);
+    color: rgb(255, 255, 255);
     position: absolute;
     top: 2rem;
     left: 55rem;
   }
 }
-

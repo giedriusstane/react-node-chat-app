@@ -3,6 +3,8 @@ import "./Toolbar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/authSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const Toolbar = () => {
   const navigate = useNavigate();
@@ -16,12 +18,20 @@ const Toolbar = () => {
 
   return (
     <div className="toolbar">
-      <Link to={"/profile"}>Profile</Link>
-      <Link to={"/messages"}>Messages</Link>
-      <Link to={"/posts"}>Posts</Link>
-      <Link to={"/users"}>Users</Link>
-      <button onClick={handleBtnLogout} className="toolbar__btn-logout">
-        Logout
+      <Link className="toolbar__btn" to={"/profile"}>
+        Profile
+      </Link>
+      <Link className="toolbar__btn" to={"/messages"}>
+        Messages
+      </Link>
+      <Link className="toolbar__btn" to={"/posts"}>
+        Posts
+      </Link>
+      <Link className="toolbar__btn" to={"/users"}>
+        Users
+      </Link>
+      <button className="toolbar__btn-logout" onClick={handleBtnLogout}>
+        Logout <FontAwesomeIcon icon={faRightFromBracket} />
       </button>
     </div>
   );

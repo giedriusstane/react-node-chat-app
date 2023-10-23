@@ -1,4 +1,12 @@
 .users-page {
+  margin-top: 20rem;
   display: flex;
-  gap: 5rem;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    width: 75%;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
 }

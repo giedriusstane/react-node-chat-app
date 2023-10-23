@@ -196,8 +196,6 @@ const PostsPage = () => {
   return (
     <div className="posts-page">
       <div className="posts-page__sorting-container">
-        <h4>sort by:</h4>
-
         <button
           onClick={handleBtnCommentsAmount}
           className="posts-page__btn-sorting"

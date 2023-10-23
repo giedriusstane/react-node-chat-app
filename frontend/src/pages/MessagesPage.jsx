@@ -231,9 +231,9 @@ const MessagesPage = () => {
               key={index}
               userImg={conversation.pictureUrl}
               username={
-                <div>
+                <div className="messages-page__with">
                   Conversation with{" "}
-                  <h3 className="messages-page__conversation-username">
+                  <h3 cla className="messages-page__conversation-username">
                     {conversation.username}
                   </h3>
                 </div>
@@ -244,7 +244,9 @@ const MessagesPage = () => {
             />
           ))
         ) : (
-          <div>No conversation</div>
+          <div className="messages-page__no-conversation-selected">
+            No conversation
+          </div>
         )}
       </div>
       <div className="messages-page__chat-container">
@@ -280,12 +282,14 @@ const MessagesPage = () => {
 
         {selectedUserId !== "" && (
           <div className="messages-page__inputs-container">
-            <input
+            <textarea
               className="messages-page__text-input"
               type="text"
               placeholder="write message here..."
               ref={inputMsgSendRef}
-            />
+              cols="30"
+              rows="10"
+            ></textarea>
             <button onClick={handleSendBtn} className="messages-page__btn-send">
               Send
             </button>

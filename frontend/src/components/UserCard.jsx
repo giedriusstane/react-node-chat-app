@@ -37,10 +37,12 @@ const UserCard = ({ userImg, username, userId, currentUserId }) => {
           alt="user image"
         />
       </div>
-      <div>
-        <h3>{username}</h3>
+      <div className="user-card__box">
+        <h3 className="user-card__username">{username}</h3>
         {currentUserId !== userId && (
-          <button onClick={handleBtnSendMsg}>Write Message</button>
+          <button className="user-card__btn" onClick={handleBtnSendMsg}>
+            Write Message
+          </button>
         )}
 
         {isModalOpen && <UserMsgModal onBtnXClick={handleBtnXClick} />}

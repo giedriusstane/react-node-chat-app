@@ -22,6 +22,7 @@ const UsersPage = () => {
       const response = await fetch(`http://localhost:3000/users`, options);
       const jsonData = await response.json();
       if (response.ok) {
+        console.log(jsonData);
         setResponseData(jsonData.usersData);
         setCurrentUserId(jsonData.currentUserId);
         dispatch(updateCurrentUserId(jsonData.currentUserId));
@@ -35,22 +36,20 @@ const UsersPage = () => {
     getAllUsers();
   }, []);
 
-  useEffect(() => {
-    console.log(responseData);
-  }, [responseData]);
-
   return (
     <div className="users-page">
-      {responseData &&
-        responseData.map((user, index) => (
-          <UserCard
-            key={index}
-            username={user.username}
-            userImg={user.pictureUrl}
-            userId={user._id}
-            currentUserId={currentUserId}
-          />
-        ))}
+      <div className="users-page__container">
+        {responseData &&
+          responseData.map((user, index) => (
+            <UserCard
+              key={index}
+              username={user.username}
+              userImg={user.pictureUrl}
+              userId={user._id}
+              currentUserId={currentUserId}
+            />
+          ))}
+      </div>
     </div>
   );
 };

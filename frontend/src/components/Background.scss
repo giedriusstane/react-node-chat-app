@@ -1,14 +1,73 @@
 .background {
-  &__circle-7 {
-    //   z-index: 1;
-    //   position: absolute;
-    //   width: 60rem;
-    //   height: 60rem;
-    //   border-radius: 100%;
-    //   background-color: rgb(255, 255, 255);
-    //   border: 0.1rem solid white;
-    //   top: -30rem;
-    //   left: -20rem;
-    //  // box-shadow: 0rem 0rem 5rem 5rem rgb(255, 255, 255);
+  &__circle-0 {
+    z-index: 1;
+    position: absolute;
+    width: 20rem;
+    height: 20rem;
+    left: 110rem;
+    top: 20rem;
+    border-radius: 100%;
+    background: rgb(152, 95, 185);
+    background: radial-gradient(
+      circle,
+      rgba(152, 95, 185, 1) 0%,
+      rgba(221, 114, 239, 0.1740897042410714) 0%,
+      rgba(251, 228, 251, 0.5746499283307073) 59%
+    );
+    backdrop-filter: blur(1rem);
+  }
+
+  &__circle-1 {
+    z-index: 1;
+    position: absolute;
+    width: 15rem;
+    height: 15rem;
+    left: 20em;
+    top: 5rem;
+    border-radius: 100%;
+    background: rgb(152, 95, 185);
+    background: radial-gradient(
+      circle,
+      rgba(152, 95, 185, 1) 0%,
+      rgba(221, 114, 239, 0.1740897042410714) 0%,
+      rgba(251, 228, 251, 0.5746499283307073) 59%
+    );
+    backdrop-filter: blur(1rem);
+  }
+
+  &__circle-2 {
+    z-index: 1;
+    position: absolute;
+    width: 25rem;
+    height: 25rem;
+    left: 40em;
+    top: 70rem;
+    border-radius: 100%;
+    background: rgb(152, 95, 185);
+    background: radial-gradient(
+      circle,
+      rgba(152, 95, 185, 1) 0%,
+      rgba(221, 114, 239, 0.1740897042410714) 0%,
+      rgba(251, 228, 251, 0.5746499283307073) 59%
+    );
+    backdrop-filter: blur(1rem);
+  }
+
+  &__circle-3 {
+    z-index: 1;
+    position: absolute;
+    width: 20rem;
+    height: 20rem;
+    left: 150em;
+    top: 50rem;
+    border-radius: 100%;
+    background: rgb(152, 95, 185);
+    background: radial-gradient(
+      circle,
+      rgba(152, 95, 185, 1) 0%,
+      rgba(221, 114, 239, 0.1740897042410714) 0%,
+      rgba(251, 228, 251, 0.5746499283307073) 59%
+    );
+    backdrop-filter: blur(1rem);
   }
 }

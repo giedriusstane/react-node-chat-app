@@ -34,10 +34,17 @@ const PostCard = ({
   return (
     <div onClick={handlePostCardClick} className="post-card">
       <img className="post-card__post-img" src={imageSrc} alt="post image" />
-      <h3>{title}</h3>
-      <h4>Likes: {likes}</h4>
-      <p>Comments: {comments}</p>
-      <h5>Created At: {createdAt}</h5>
+      <h3 className="post-card__title">{title}</h3>
+      <h4 className="post-card__likes">
+        Likes <span className="post-card__space"></span> {likes}
+      </h4>
+      <p className="post-card__comments">
+        Comments <span className="post-card__space"></span> {comments}
+      </p>
+      <h5 className="post-card__created-at">
+        Created At <span className="post-card__space"></span>
+        {createdAt}
+      </h5>
     </div>
   );
 };

@@ -71,7 +71,12 @@ const ProfilePage = () => {
       ) : (
         <div className="profile-page__container">
           {responseData.message && responseData.userData ? (
-            <div className="profile-page__title">{`${responseData.message} ${responseData.userData.username}`}</div>
+            <div className="profile-page__title">
+              <span className="profile-page__welcome">
+                {responseData.message}
+              </span>{" "}
+              {responseData.userData.username}
+            </div>
           ) : (
             <LoadingElement />
           )}
@@ -84,14 +89,14 @@ const ProfilePage = () => {
 
           <button
             onClick={handleBtnChangePicture}
-            className="profile-page__btn-change-picture"
+            className="profile-page__btn-change"
           >
             Change Picture
           </button>
 
           <button
             onClick={handleBtnChangePassword}
-            className="profile-page__btn-change-password"
+            className="profile-page__btn-change"
           >
             Change Password
           </button>
