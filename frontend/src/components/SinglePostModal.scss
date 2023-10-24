@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
   border: 0.1rem solid rgba(212, 212, 212, 0.4);
   padding: 3rem 4rem 6rem 4rem;
@@ -11,7 +12,7 @@
   left: 50%;
   transform: translate(-50%, -30%);
   width: 70rem;
-  height: 70rem;
+  height: 72rem;
   border: 0.1rem solid rgba(67, 67, 67, 0.3);
   background: linear-gradient(
     120deg,
@@ -146,6 +147,10 @@
     transition-timing-function: ease-in-out;
   }
 
+  &__btn-comment:hover {
+    background-color: #23988d;
+  }
+
   &__x-close {
     font-size: 2.7rem;
     cursor: pointer;
@@ -162,7 +167,6 @@
 
   &__comments-container-invisible {
     border: 0.1rem solid black;
-
     padding: 1rem;
   }
 
@@ -185,7 +189,7 @@
   align-items: center;
   gap: 2rem;
   padding: 5rem;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   top: 30%;
   left: 50%;

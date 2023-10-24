@@ -87,7 +87,7 @@ const CreatePostModal = ({ onBtnXClick, onBtnCreatePost }) => {
           setErrorText(newErrorText);
         }
 
-        if (postData.postTitle.length > 30) {
+        if (postData.postTitle.length > 16) {
           newErrorText.push("Post title is too long.");
           setShowErrorCard(true);
           setErrorText(newErrorText);

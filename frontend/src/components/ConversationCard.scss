@@ -1,8 +1,8 @@
 .conversation-card {
   display: flex;
   gap: 2rem;
-  min-width: 32rem;
-  height: 13rem;
+  min-width: 36rem;
+  height: 14rem;
   width: 18rem;
   padding: 1rem;
   border: 0.1rem solid rgba(67, 67, 67, 0.3);
@@ -15,6 +15,7 @@
   border-radius: 2rem;
   box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
   cursor: pointer;
+  transition-duration: 0.25s;
 
   &__user-img {
     width: 10rem;
@@ -27,4 +28,8 @@
     color: #2ec4b6;
     font-size: 2rem;
   }
+}
+
+.conversation-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
 }

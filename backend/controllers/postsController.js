@@ -8,7 +8,7 @@ const createPost = async (req, res) => {
         newErrorText.push("Post title is too short.");
     }
 
-    if (req.body.postTitle.length > 30) {
+    if (req.body.postTitle.length > 16) {
         newErrorText.push("Post title is too long.");
     }
 

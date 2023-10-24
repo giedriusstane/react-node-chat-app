@@ -36,7 +36,7 @@ const SinglePostModal = ({
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
   useEffect(() => {
-    //
+    
     console.log(sendersIdMadeLike);
   }, []);
 

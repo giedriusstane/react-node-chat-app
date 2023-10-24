@@ -1,9 +1,8 @@
 .user-card {
   display: flex;
   gap: 2rem;
-  min-width: 32rem;
-  height: 13rem;
-  width: 18rem;
+  min-width: 36rem;
+  height: 14rem;
   padding: 1rem;
   border: 0.1rem solid rgba(67, 67, 67, 0.3);
   background: linear-gradient(
@@ -24,7 +23,7 @@
 
   &__username {
     color: #2ec4b6;
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   &__btn {

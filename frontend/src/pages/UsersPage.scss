@@ -5,7 +5,8 @@
 
   &__container {
     display: flex;
-    width: 75%;
+    justify-content: center;
+    width: 50%;
     gap: 3rem;
     flex-wrap: wrap;
   }

@@ -22,6 +22,7 @@ const PostsPage = () => {
   const [commentsAmountSort, setCommentsAmountSort] = useState(false);
   const [likesAmountSort, setLikesAmountSort] = useState(false);
   const [timeCreatedSort, setTimeCreatedSort] = useState(false);
+  const [position, setPosition] = useState({ position: "static" });
 
   const dispatch = useDispatch();
 
@@ -100,18 +101,26 @@ const PostsPage = () => {
     setSelectedPost(post);
     dispatch(updateSelectedPostSendersId(post.sendersId));
     dispatch(updateSendersIdMadeLike(post.likes.sendersId));
+    //////////////////////////////////
+    setPosition({ position: "fixed" });
   };
 
   const handleBtnCreatePost = () => {
     setIsModalOpen(true);
+    //////////////////////////////////
+    setPosition({ position: "fixed" });
   };
 
   const handleBtnAddPost = () => {
     setIsModalOpen(false);
+    //////////////////////////////////
+    setPosition({ position: "static" });
   };
 
   const handleCloseXModal = () => {
     setIsModalOpen(false);
+    //////////////////////////
+    setPosition({ position: "static" });
   };
 
   const updatePost = async (postData) => {
@@ -149,6 +158,8 @@ const PostsPage = () => {
 
   const handleSinglePostModalBtnXClick = () => {
     setIsSinglePostModalOpen(false);
+     //////////////////////////////////
+     setPosition({ position: "static" });
   };
 
   const handleBtnCommentsAmount = () => {
@@ -194,7 +205,7 @@ const PostsPage = () => {
   };
 
   return (
-    <div className="posts-page">
+    <div style={position} className="posts-page">
       <div className="posts-page__sorting-container">
         <button
           onClick={handleBtnCommentsAmount}

@@ -15,6 +15,7 @@
   );
   border-radius: 2rem;
   box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
+  transition-duration: 0.25s;
 
   &__post-img {
     object-fit: cover;
@@ -30,7 +31,6 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
     font-weight: 800;
-    color: white;
     align-self: flex-start;
     color: #2ec4b6;
   }
@@ -45,15 +45,25 @@
     align-self: flex-start;
   }
 
+  &__like-comments-num {
+    padding-left: 1rem;
+    color: #2ec4b6;
+  }
+
   &__created-at {
     font-size: 1rem;
     font-weight: 600;
-    color: rgb(199, 199, 199);
+    color: white;
     margin-top: 3.3rem;
     align-self: flex-start;
   }
 
-  &__space {
+  &__date {
     margin-left: 1rem;
+    color: #2ec4b6;
   }
+}
+
+.post-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
 }

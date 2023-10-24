@@ -7,6 +7,7 @@
   &__conversations-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 2rem;
     gap: 2rem;
     border: 0.1rem solid rgba(67, 67, 67, 0.3);
@@ -18,6 +19,9 @@
     );
     border-radius: 2rem;
     box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(61, 63, 77, 0.1);
+    height: 60rem;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   &__chat-container {
@@ -121,7 +125,7 @@
     transition-timing-function: ease-in-out;
   }
 
-  &__btn-send :hover {
+  &__btn-send:hover {
     background-color: #23988d;
   }
 }

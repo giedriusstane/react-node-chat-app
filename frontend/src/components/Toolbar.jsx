@@ -1,6 +1,6 @@
 import React from "react";
 import "./Toolbar.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useMatch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,18 +16,39 @@ const Toolbar = () => {
     navigate("/login");
   };
 
+  const isProfileActive = useMatch("/profile");
+  const isMessagesActive = useMatch("/messages");
+  const isPostsActive = useMatch("/posts");
+  const isUsersActive = useMatch("/users");
+
   return (
     <div className="toolbar">
-      <Link className="toolbar__btn" to={"/profile"}>
+      <Link
+        className={`toolbar__btn ${
+          isProfileActive ? "toolbar__btn-active" : ""
+        }`}
+        to="/profile"
+      >
         Profile
       </Link>
-      <Link className="toolbar__btn" to={"/messages"}>
+      <Link
+        className={`toolbar__btn ${
+          isMessagesActive ? "toolbar__btn-active" : ""
+        }`}
+        to="/messages"
+      >
         Messages
       </Link>
-      <Link className="toolbar__btn" to={"/posts"}>
+      <Link
+        className={`toolbar__btn ${isPostsActive ? "toolbar__btn-active" : ""}`}
+        to="/posts"
+      >
         Posts
       </Link>
-      <Link className="toolbar__btn" to={"/users"}>
+      <Link
+        className={`toolbar__btn ${isUsersActive ? "toolbar__btn-active" : ""}`}
+        to="/users"
+      >
         Users
       </Link>
       <button className="toolbar__btn-logout" onClick={handleBtnLogout}>

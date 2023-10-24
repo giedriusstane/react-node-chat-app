@@ -36,14 +36,14 @@ const PostCard = ({
       <img className="post-card__post-img" src={imageSrc} alt="post image" />
       <h3 className="post-card__title">{title}</h3>
       <h4 className="post-card__likes">
-        Likes <span className="post-card__space"></span> {likes}
+        Likes <span className="post-card__like-comments-num">{likes}</span>
       </h4>
       <p className="post-card__comments">
-        Comments <span className="post-card__space"></span> {comments}
+        Comments{" "}
+        <span className="post-card__like-comments-num">{comments}</span>
       </p>
       <h5 className="post-card__created-at">
-        Created At <span className="post-card__space"></span>
-        {createdAt}
+        Created At <span className="post-card__date">{createdAt}</span>
       </h5>
     </div>
   );
