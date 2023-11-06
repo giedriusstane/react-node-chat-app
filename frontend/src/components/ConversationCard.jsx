@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ConversationCard.scss";
 
 const ConversationCard = ({ userImg, username, onConversationCardClick }) => {
@@ -7,6 +7,7 @@ const ConversationCard = ({ userImg, username, onConversationCardClick }) => {
       onConversationCardClick();
     }
   };
+
   return (
     <div onClick={handleConversationCardClick} className="conversation-card">
       <div>

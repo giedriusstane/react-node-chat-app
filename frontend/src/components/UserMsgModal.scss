@@ -9,7 +9,7 @@
   left: 50%;
   transform: translate(-50%, -30%);
   width: 60rem;
-  height: 40rem;
+  min-height: 40rem;
   border: 0.1rem solid rgba(67, 67, 67, 0.3);
   background: linear-gradient(
     120deg,

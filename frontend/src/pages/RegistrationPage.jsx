@@ -29,13 +29,10 @@ const RegistrationPage = () => {
 
       if (data.registration === "ok") {
         navigate("/login");
-      } else {
-        console.log(data.error);
-        setErrorText(data.error);
-        setShowErrorCard(true);
       }
     } catch (error) {
-      console.error("Error during registration:", error);
+      setErrorText(`Error during registration: ${error}`);
+      setShowErrorCard(true);
     }
   };
 
@@ -96,51 +93,53 @@ const RegistrationPage = () => {
 
   return (
     <div className="registration-page">
-      <h2 className="registration-page__registration-text">Registration</h2>
+      <div className="registration-page__container">
+        <h2 className="registration-page__registration-text">Registration</h2>
 
-      {showErrorCard && (
-        <ErrorMsgCard
-          onBtnXClickError={onBtnXClickError}
-          msgText={errorText.map((error, index) => (
-            <div key={index}>{error}</div>
-          ))}
-        />
-      )}
+        {showErrorCard && (
+          <ErrorMsgCard
+            onBtnXClickError={onBtnXClickError}
+            msgText={errorText.map((error, index) => (
+              <div key={index}>{error}</div>
+            ))}
+          />
+        )}
 
-      <div className="registration-page__inputs-container">
-        <input
-          className="registration-page__input"
-          type="text"
-          placeholder="username"
-          ref={inputUsernameRef}
-        />
+        <div className="registration-page__inputs-container">
+          <input
+            className="registration-page__input"
+            type="text"
+            placeholder="username"
+            ref={inputUsernameRef}
+          />
 
-        <input
-          className="registration-page__input"
-          type="password"
-          placeholder="password"
-          ref={inputPassword_1Ref}
-        />
+          <input
+            className="registration-page__input"
+            type="password"
+            placeholder="password"
+            ref={inputPassword_1Ref}
+          />
 
-        <input
-          className="registration-page__input"
-          type="password"
-          placeholder="password"
-          ref={inputPassword_2Ref}
-        />
+          <input
+            className="registration-page__input"
+            type="password"
+            placeholder="password"
+            ref={inputPassword_2Ref}
+          />
 
-        <button
-          onClick={handleRegisterBtn}
-          className="registration-page__btn-register"
-        >
-          Register
-        </button>
-        <div className="registration-page__line"></div>
-        <div className="registration-page__question-text">
-          Already have an account?{" "}
-          <Link className="registration-page__login-link" to={"/login"}>
-            Login here!
-          </Link>
+          <button
+            onClick={handleRegisterBtn}
+            className="registration-page__btn-register"
+          >
+            Register
+          </button>
+          <div className="registration-page__line"></div>
+          <div className="registration-page__question-text">
+            Already have an account?{" "}
+            <Link className="registration-page__login-link" to={"/login"}>
+              Login here!
+            </Link>
+          </div>
         </div>
       </div>
     </div>

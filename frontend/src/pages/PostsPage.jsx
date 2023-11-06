@@ -21,6 +21,7 @@ const PostsPage = () => {
   const [currentUserId, setCurrentUserId] = useState();
   const [commentsAmountSort, setCommentsAmountSort] = useState(false);
   const [likesAmountSort, setLikesAmountSort] = useState(false);
+
   const [timeCreatedSort, setTimeCreatedSort] = useState(false);
   const [position, setPosition] = useState({ position: "static" });
 
@@ -39,11 +40,10 @@ const PostsPage = () => {
       const response = await fetch(`http://localhost:3000/posts`, options);
       const jsonData = await response.json();
       if (response.ok) {
-        console.log(jsonData.postsData);
         setAllPostData(jsonData.postsData);
       }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
@@ -66,10 +66,9 @@ const PostsPage = () => {
         setCurrentUserId(jsonData.currentUserId);
         dispatch(updateCurrentUserId(jsonData.currentUserId));
         setAllUsersData(jsonData.usersData);
-        console.log(jsonData.usersData);
       }
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
@@ -101,25 +100,24 @@ const PostsPage = () => {
     setSelectedPost(post);
     dispatch(updateSelectedPostSendersId(post.sendersId));
     dispatch(updateSendersIdMadeLike(post.likes.sendersId));
-    //////////////////////////////////
+
     setPosition({ position: "fixed" });
   };
 
   const handleBtnCreatePost = () => {
     setIsModalOpen(true);
-    //////////////////////////////////
+
     setPosition({ position: "fixed" });
   };
 
   const handleBtnAddPost = () => {
     setIsModalOpen(false);
-    //////////////////////////////////
     setPosition({ position: "static" });
   };
 
   const handleCloseXModal = () => {
     setIsModalOpen(false);
-    //////////////////////////
+
     setPosition({ position: "static" });
   };
 
@@ -139,11 +137,8 @@ const PostsPage = () => {
         options
       );
       const jsonData = await response.json();
-      if (response.ok) {
-        console.log(jsonData);
-      }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
@@ -152,14 +147,17 @@ const PostsPage = () => {
       postId: selectedPost._id,
       likeUpdate: true,
     };
-
     updatePost(postData);
   };
 
+  useEffect(() => {
+    getAllPosts();
+  }, [allPostsData]);
+
   const handleSinglePostModalBtnXClick = () => {
     setIsSinglePostModalOpen(false);
-     //////////////////////////////////
-     setPosition({ position: "static" });
+
+    setPosition({ position: "static" });
   };
 
   const handleBtnCommentsAmount = () => {

@@ -31,7 +31,7 @@ const ProfilePage = () => {
         setErrorText(data.error);
       }
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 

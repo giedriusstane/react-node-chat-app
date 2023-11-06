@@ -38,11 +38,8 @@ const ChangePicPassModal = ({
         options
       );
       const data = await response.json();
-      if (response.ok) {
-        console.log(data.message);
-      }
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
@@ -63,7 +60,6 @@ const ChangePicPassModal = ({
         if (newErrorText.length === 0) {
           setShowErrorCard(false);
           updateUser(dataToUpdate);
-          alert("picture updated");
           onBtnUpdate();
         }
       } else {

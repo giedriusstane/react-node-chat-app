@@ -4,6 +4,7 @@ import UserCard from "../components/UserCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
+import ErrorMsgCard from "./ErrorMsgCard";
 
 const SinglePostModal = ({
   img,
@@ -19,6 +20,13 @@ const SinglePostModal = ({
   onModalBtnXClick,
 }) => {
   const inputCommentRef = useRef();
+  const [errorText, setErrorText] = useState([]);
+  const [showErrorCard, setShowErrorCard] = useState(false);
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(likes);
+
+  const [comments, setComments] = useState(allComments);
 
   const singlePostVisibility = useSelector(
     (state) => state.users.singlePostVisibility
@@ -36,11 +44,6 @@ const SinglePostModal = ({
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
   useEffect(() => {
-    
-    console.log(sendersIdMadeLike);
-  }, []);
-
-  useEffect(() => {
     const checkImage = new Image();
     checkImage.src = img;
 
@@ -53,10 +56,16 @@ const SinglePostModal = ({
     };
   }, [img, defaultImage]);
 
-  const handleBtnLike = () => {
-    if (onBtnLikeClick) {
-      onBtnLikeClick();
-    }
+  const handleBtnLike = async () => {
+    setIsLiked(true);
+    setLikesCount(likesCount + 1);
+
+    const postData = {
+      postId: selectedPost._id,
+      likeUpdate: true,
+    };
+
+    updatePost(postData);
   };
 
   const updatePost = async (postData) => {
@@ -75,11 +84,8 @@ const SinglePostModal = ({
         options
       );
       const jsonData = await response.json();
-      if (response.ok) {
-        console.log(jsonData);
-      }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
@@ -90,14 +96,40 @@ const SinglePostModal = ({
       comment: true,
     };
 
-    updatePost(postData);
-    inputCommentRef.current.value = "";
+    const newErrorText = [];
+
+    if (postData.commentText.length < 3) {
+      newErrorText.push("Comment is too short.");
+      setShowErrorCard(true);
+      setErrorText(newErrorText);
+    }
+
+    if (postData.commentText.length > 300) {
+      newErrorText.push("Comment is too long.");
+      setShowErrorCard(true);
+      setErrorText(newErrorText);
+    }
+
+    if (newErrorText.length === 0) {
+      setShowErrorCard(false);
+      updatePost(postData);
+      inputCommentRef.current.value = "";
+
+      setComments((prevComments) => [
+        ...prevComments,
+        [postData.commentText, currentUserId],
+      ]);
+    }
   };
 
   const handleBtnXClick = () => {
     if (onModalBtnXClick) {
       onModalBtnXClick();
     }
+  };
+
+  const onBtnXClickError = () => {
+    setShowErrorCard(false);
   };
 
   return (
@@ -144,7 +176,8 @@ const SinglePostModal = ({
             />
             <div className="single-post-modal__likes-container">
               {selectedPostSendersId !== currentUserId &&
-              !sendersIdMadeLike.includes(currentUserId) ? (
+              !sendersIdMadeLike.includes(currentUserId) &&
+              !isLiked ? (
                 <button
                   onClick={handleBtnLike}
                   className="single-post-modal__btn-like"
@@ -159,7 +192,9 @@ const SinglePostModal = ({
 
               <h4 className="single-post-modal__likes">
                 Likes{" "}
-                <span className="single-post-modal__num-likes">{likes}</span>{" "}
+                <span className="single-post-modal__num-likes">
+                  {likesCount}
+                </span>{" "}
               </h4>
             </div>
           </div>
@@ -172,7 +207,20 @@ const SinglePostModal = ({
               : "single-post-modal__comments-container-invisible"
           }
         >
-          <div className="single-post-modal__comments-field">{allComments}</div>
+          {comments && (
+            <div className="single-post-modal__comments-field">
+              {allComments}
+            </div>
+          )}
+
+          {showErrorCard && (
+            <ErrorMsgCard
+              onBtnXClickError={onBtnXClickError}
+              msgText={errorText.map((error, index) => (
+                <div key={index}>{error}</div>
+              ))}
+            />
+          )}
           <div className="single-post-modal__comments-inputs-container">
             <textarea
               className="single-post-modal__input-comments"

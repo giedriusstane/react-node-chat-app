@@ -41,7 +41,7 @@ const CreatePostModal = ({ onBtnXClick, onBtnCreatePost }) => {
         dispatch(updateCurrentUserId(data.userData._id));
       }
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
@@ -66,7 +66,7 @@ const CreatePostModal = ({ onBtnXClick, onBtnCreatePost }) => {
         console.log(jsonData);
       }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 

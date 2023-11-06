@@ -92,4 +92,11 @@
     background-color: rgb(169, 169, 169);
     margin-top: 2rem;
   }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+  }
 }

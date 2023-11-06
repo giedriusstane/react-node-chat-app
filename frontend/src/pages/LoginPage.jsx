@@ -30,6 +30,9 @@ const LoginPage = () => {
       const data = await response.json();
 
       if (response.ok) {
+        if (localStorage.getItem("token")) {
+          localStorage.removeItem("token");
+        }
         localStorage.setItem("token", data.token);
         navigate("/profile");
       } else {
@@ -37,7 +40,8 @@ const LoginPage = () => {
         setErrorText(data.error);
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      setErrorText(`Error during login - ${error}`);
+      setShowErrorCard(true);
     }
   };
 
@@ -58,53 +62,54 @@ const LoginPage = () => {
     dispatch(autologin(!autologinIs));
   };
 
-  useEffect(() => {
-    console.log("autologinIs:", autologinIs);
-  }, [autologinIs]);
-
   return (
     <div className="login-page">
-      <h2 className="login-page__login-text">Login</h2>
-      {showErrorCard && (
-        <ErrorMsgCard onBtnXClickError={onBtnXClickError} msgText={errorText} />
-      )}
+      <div className="login-page__container">
+        <h2 className="login-page__login-text">Login</h2>
+        {showErrorCard && (
+          <ErrorMsgCard
+            onBtnXClickError={onBtnXClickError}
+            msgText={errorText}
+          />
+        )}
 
-      <div className="login-page__inputs-container">
-        <input
-          className="login-page__input"
-          type="text"
-          placeholder="username"
-          ref={inputUsernameRef}
-        />
-        <input
-          className="login-page__input"
-          type="password"
-          placeholder="password"
-          ref={inputPasswordRef}
-        />
+        <div className="login-page__inputs-container">
+          <input
+            className="login-page__input"
+            type="text"
+            placeholder="username"
+            ref={inputUsernameRef}
+          />
+          <input
+            className="login-page__input"
+            type="password"
+            placeholder="password"
+            ref={inputPasswordRef}
+          />
 
-        <button onClick={handleLoginBtn} className="login-page__btn-login">
-          Login
-        </button>
+          <button onClick={handleLoginBtn} className="login-page__btn-login">
+            Login
+          </button>
 
-        <div className="login-page__autologin-container">
-          <div
-            onClick={handleCheckBoxAutologin}
-            className="login-page__checkbox"
-          >
-            {autologinIs && (
-              <FontAwesomeIcon className="login-page__icon" icon={faCheck} />
-            )}
+          <div className="login-page__autologin-container">
+            <div
+              onClick={handleCheckBoxAutologin}
+              className="login-page__checkbox"
+            >
+              {autologinIs && (
+                <FontAwesomeIcon className="login-page__icon" icon={faCheck} />
+              )}
+            </div>
+
+            <h4 className="login-page__autoligin-text">Stay signed in</h4>
           </div>
-
-          <h4 className="login-page__autoligin-text">Stay signed in</h4>
-        </div>
-        <div className="login-page__line"></div>
-        <div className="login-page__question-text">
-          Don't have an account?{" "}
-          <Link className="login-page__register-link" to={"/"}>
-            Create here!
-          </Link>
+          <div className="login-page__line"></div>
+          <div className="login-page__question-text">
+            Don't have an account?{" "}
+            <Link className="login-page__register-link" to={"/"}>
+              Create here!
+            </Link>
+          </div>
         </div>
       </div>
     </div>

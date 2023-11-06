@@ -23,11 +23,6 @@ const UserMsgModal = ({ onBtnXClick }) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(`currentUserID: ${currentUserId}`);
-    console.log(`selectedUserID: ${selectedUserId}`);
-  }, []);
-
   const handleBtnXClick = () => {
     if (onBtnXClick) {
       onBtnXClick();
@@ -49,11 +44,10 @@ const UserMsgModal = ({ onBtnXClick }) => {
       const response = await fetch(`http://localhost:3000/messages`, options);
       const jsonData = await response.json();
       if (response.ok) {
-        console.log(jsonData);
         dispatch(updateMsgModalVisibility(false));
       }
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
@@ -72,7 +66,7 @@ const UserMsgModal = ({ onBtnXClick }) => {
       setErrorText(newErrorText);
     }
 
-    if (messageData.msgText.length > 1000) {
+    if (messageData.msgText.length > 500) {
       newErrorText.push("Message is too long.");
       setShowErrorCard(true);
       setErrorText(newErrorText);

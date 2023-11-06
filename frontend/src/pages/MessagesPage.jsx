@@ -15,6 +15,8 @@ const MessagesPage = () => {
   const [chatText, setChatText] = useState("");
   const [errorText, setErrorText] = useState([]);
   const [showErrorCard, setShowErrorCard] = useState(false);
+  const [noConversationText, setNoconversationText] =
+    useState("No conversation");
 
   const inputMsgSendRef = useRef();
 
@@ -42,7 +44,7 @@ const MessagesPage = () => {
         setReponseDataAllMessages(jsonData.messages);
       }
     } catch (error) {
-      console.log(error);
+      setNoconversationText(`Error: ${error}`);
     }
   };
 
@@ -62,7 +64,7 @@ const MessagesPage = () => {
         dispatch(updateCurrentUserId(jsonData.currentUserId));
       }
     } catch (error) {
-      console.error(error);
+      setNoconversationText(`Error: ${error}`);
     }
   };
 
@@ -112,9 +114,6 @@ const MessagesPage = () => {
       });
 
       const sortedConversations = Array.from(conversationsMap.values());
-
-      console.log(sortedConversations);
-      console.log(responseDataAllMessages);
       setConversations(sortedConversations);
     }
   }, [responseDataAllUsers, responseDataAllMessages, currentUserId]);
@@ -131,10 +130,6 @@ const MessagesPage = () => {
       const userId = selectedUser._id;
 
       dispatch(updateSelectedUserId(userId));
-
-      console.log(`Selected User ID for ${selectedUsername}: ${userId}`);
-    } else {
-      console.log(`User with username ${selectedUsername} not found.`);
     }
 
     const conversationWithSelectedUser = conversations.find(
@@ -163,10 +158,8 @@ const MessagesPage = () => {
         .join("\n");
 
       setChatText(combinedChat);
+      getAllMessages();
     }
-
-    console.log(`selecteduserid ${selectedUsername}`);
-    //console.log(selectedUserId);
   };
 
   const sendMessage = async (messageData) => {
@@ -182,11 +175,9 @@ const MessagesPage = () => {
 
       const response = await fetch(`http://localhost:3000/messages`, options);
       const jsonData = await response.json();
-      if (response.ok) {
-        console.log(jsonData);
-      }
     } catch (error) {
-      console.log(error);
+      setErrorText(error);
+      setErrorText(true);
     }
   };
 
@@ -215,8 +206,23 @@ const MessagesPage = () => {
       setShowErrorCard(false);
       sendMessage(messageData);
       inputMsgSendRef.current.value = "";
+
+      const senderName = responseDataAllUsers.find(
+        (user) => user._id === messageData.sendersId
+      );
+      setChatText((prevChatText) => {
+        if (prevChatText) {
+          return `${prevChatText}\n${senderName.username}:\n${messageData.msgText}`;
+        } else {
+          return `${senderName.username}:\n${messageData.msgText}`;
+        }
+      });
     }
   };
+
+  useEffect(() => {
+    getAllMessages();
+  }, [responseDataAllMessages]);
 
   const onBtnXClickError = () => {
     setShowErrorCard(false);
@@ -233,7 +239,7 @@ const MessagesPage = () => {
               username={
                 <div className="messages-page__with">
                   Conversation with{" "}
-                  <h3 cla className="messages-page__conversation-username">
+                  <h3 className="messages-page__conversation-username">
                     {conversation.username}
                   </h3>
                 </div>
@@ -245,7 +251,7 @@ const MessagesPage = () => {
           ))
         ) : (
           <div className="messages-page__no-conversation-selected">
-            No conversation
+            {noConversationText}
           </div>
         )}
       </div>

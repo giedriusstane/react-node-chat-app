@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 22rem;
-  height: 35rem;
+  width: 25rem;
+  height: 37rem;
   padding: 1rem;
   cursor: pointer;
   border: 0.1rem solid rgba(67, 67, 67, 0.3);
@@ -27,7 +27,7 @@
   }
 
   &__title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
     font-weight: 800;
@@ -37,7 +37,7 @@
 
   &__likes,
   &__comments {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 800;
     margin-top: 0.5rem;
     color: white;
@@ -51,7 +51,7 @@
   }
 
   &__created-at {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: white;
     margin-top: 3.3rem;

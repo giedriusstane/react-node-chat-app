@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(237, 195, 195);
-  border: 0.1rem solid rgb(250, 120, 120);
-  width: 30rem;
-  border-radius: 0.5rem;
+  border: 0.1rem solid rgb(250, 108, 108);
+  width: 100%;
+  border-radius: 1rem;
   margin-bottom: 2rem;
   padding: 1rem;
- 
+  background-color: rgb(224, 149, 149);
+  border-radius: 1rem;
+  box-shadow: 0rem 0rem 1.5rem 0.4rem rgba(77, 61, 61, 0.1);
 
   &__error-text {
     font-weight: 300;
@@ -19,7 +20,7 @@
 
   &__x-close {
     font-size: 1.8rem;
-    color: rgb(167, 54, 54);
+    color: rgb(165, 37, 37);
     cursor: pointer;
   }
 }

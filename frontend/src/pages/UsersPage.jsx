@@ -22,13 +22,12 @@ const UsersPage = () => {
       const response = await fetch(`http://localhost:3000/users`, options);
       const jsonData = await response.json();
       if (response.ok) {
-        console.log(jsonData);
         setResponseData(jsonData.usersData);
         setCurrentUserId(jsonData.currentUserId);
         dispatch(updateCurrentUserId(jsonData.currentUserId));
       }
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 

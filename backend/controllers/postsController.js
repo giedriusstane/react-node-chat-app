@@ -56,6 +56,7 @@ const getAllPosts = async (req, res) => {
         if (!allPosts) {
             return console.log("No posts found");
         } else {
+            const io = req.app.get('io');
             res.status(200).json({ postsData: allPosts });
         }
     } catch (error) {
@@ -84,11 +85,27 @@ const updatePost = async (req, res) => {
         }
 
 
-
         if (req.body.comment === true) {
-            post.comments.commentText.push([req.body.commentText, req.userId])
+
+            const newErrorText = [];
+
+            if (req.body.commentText.length < 3) {
+                newErrorText.push("Comment  is too short.");
+            }
+
+            if (req.body.commentText.length > 300) {
+                newErrorText.push("Comment  is too long.");
+            }
+
+            if (newErrorText.length === 0) {
+                post.comments.commentText.push([req.body.commentText, req.userId])
+
+            } else {
+                return res.status(404).json({ error: newErrorText });
+            }
 
         }
+
 
 
         const updatedPost = await post.save();
