@@ -150,9 +150,9 @@ const PostsPage = () => {
     updatePost(postData);
   };
 
-  useEffect(() => {
-    getAllPosts();
-  }, [allPostsData]);
+  // useEffect(() => {
+  //   getAllPosts();
+  // }, [allPostsData]);
 
   const handleSinglePostModalBtnXClick = () => {
     setIsSinglePostModalOpen(false);
