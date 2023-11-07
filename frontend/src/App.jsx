@@ -8,7 +8,6 @@ import Toolbar from "./components/Toolbar";
 import MessagesPage from "./pages/MessagesPage";
 import UsersPage from "./pages/UsersPage";
 import PostsPage from "./pages/PostsPage";
-import Background from "./components/Background";
 
 const App = () => {
   const autologinIs = useSelector((state) => state.auth.isAutologin);
@@ -34,7 +33,6 @@ const App = () => {
 
   return (
     <>
-      <Background />
       {shouldRenderToolbar && localStorage.getItem("token") && <Toolbar />}
       <Routes>
         <Route path={"/"} element={<RegistrationPage />} />
